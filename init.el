@@ -6,93 +6,6 @@
 ;; License: GPL-2.0-or-later
 
 ;;; Commentary:
-;; =====================================================================
-;; ==================== READ THIS BEFORE CONTINUING ====================
-;; =====================================================================
-;;
-;;                      ⣠⣶⣿⣿⣶⡄         ⠀⣀⣤⣄⡀
-;;                      ⣿⣿⣿⣿λ⣿         ⣾)⣿⣿⣿⡆
-;;                      ⠹⢿⣿⣿⡿⠃        ⠀⣿⣿⣿⣿⣿⡏⢀⣀⡀
-;;                      ⣠⣤⣦⡄           ⠈⠛⠿⣟⣋⣼⣽⣾⣽⣦⡀⠀
-;;                      ⣼⣿⣷⣾⡽⡄       ⣴⣶⣶⣿⣿⣿⡿⢿⣟⣽⣾⣿⣿⣦
-;;                     ⣸⣿⣿⣾⣿⣿⣮⣤⣤⣤⣤⡀  ⠻⣿⡯⠽⠿⠛⠛⠉⠉⢿⣿⣿⣿⣿⣷
-;;                     ⣿⣿⢻⣿⣿⣿⣛⡿⠿⠟⠛⠁⣀⣠⣤⣤⣶⣶⣶⣶⣷⣶ ⠀⠻⣿⣿⣿⣿⣇
-;;                     ⢻⣿⡆⢿⣿⣿⣿⣿⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⠿⠟ ⣠⣶⣿⣿⣿⣿
-;;                     ⠈⠛⠃⠈⢿⣿⣿⣿⣿⣿⣿⠿⠟⠛⠋⠉     ⣠⣾⣿⣿⣿⠟⠋
-;;                          ⠙⢿⣿⣿⡏         ⠀⣴⣿⣿⣿⠟
-;;                           ⢸E⣿⡇         ⣼⣿⣿⣿
-;;                           ⢸M⣿⣿        ⢸⣿⣿⣿
-;;                           ⢸A⣿⣿        ⠸⣿⣿
-;;                           ⢸C⣿⣿
-;;                           ⣼S⣿⡇
-;;                          ⠀⠻⣿⡿
-;; =====================================================================
-;; =====================================================================
-
-;; What is Emacs-Kick?
-;;
-;; Emacs-Kick is `not' a distribution.
-;;
-;; Emacs-Kick is a starting point for your own configuration.  The goal
-;; is that you can read every line of code, top-to-bottom, understand
-;; what your configuration is doing, and modify it to suit your needs.
-;;
-;; Once you've done that, you can start exploring, configuring, and
-;; tinkering to make Emacs your own! That might mean leaving Emacs
-;; Kick just the way it is for a while or immediately breaking it into
-;; modular pieces.  It's up to you!
-;;
-;; If you don't know anything about Emacs Lisp, I recommend taking
-;; some time to read through a guide.
-;; One possible example which will only take 10-15 minutes:
-;; - https://learnxinyminutes.com/docs/elisp/
-;;
-;; After understanding a bit more about Emacs Lisp, you can use `M-x
-;; info RET` (info) for a reference on how Emacs integrates it.
-;;
-;;
-;; Emacs-Kick Guide:
-;;
-;; Well, this config ASSUMES you already knows (neo)vi(m) bindings,
-;; and the bases of how it works.  This is the `Emacs config for
-;; vimmers'.  So, if you're not familiar with it, go for
-;; `kickstart.nvim', get used to it, and than come back.
-;;
-;; On Emacs, help can be found multiple ways.
-;; With this config, the leader key is SPC.
-;; - <leader> h i opens the info (Also `M-x info RET')
-;; - <leader> h v explores available variables
-;; - <leader> h f explores avaliable functions
-;; - <leader> h k explores avaliable keybindings
-;;
-;; If, at any time you need to find some functionality, Emacs `M-x'
-;; (Meta is alt on most cases, option or command), works like a
-;; command pallete, you can for example type `M-x quit' and be
-;; presented with various options to quit Emacs.
-;;
-;; Once you've completed that, you can continue working through
-;; `AND READING' the rest of the kickstart configuration.
-;;
-;; I have left several comments throughout the configuration.  These
-;; are hints about where to find more information about the relevant
-;; settings, packages, or Emacs features used in Emacs-Kick.
-;;
-;; Feel free to delete them once you know what you're doing, but they
-;; should serve as a guide for when you are first encountering a few
-;; different constructs in your Emacs config.
-;;
-;; If you encounter any errors while installing Emacs-Kick,
-;; check the *Messages* buffer for more information. You can switch
-;; buffers using `<leader> SPC`, and all option menus can be navigated
-;; with `C-p` and `C-n`.
-;;
-;; I hope you enjoy your Emacs journey,
-;; - Rahul
-;;
-;; P.S.  You can delete this when you're done too.  It's your config
-;; now! :)
-
-
 ;;; Code:
 
 ;; Performance Hacks
@@ -147,6 +60,11 @@
 (straight-use-package '(project :type built-in))
 (straight-use-package 'use-package)
 
+(use-package general
+  :straight t
+  :config
+  (general-evil-setup)
+  (general-create-definer general-nivmap :states '(normal insert visual)))
 
 ;; In Emacs, a package is a collection of Elisp code that extends the editor's functionality,
 ;; much like plugins do in Neovim. We need to import this package to add package archives.
@@ -190,7 +108,6 @@
 ;; `use-package` declarations for specific packages, which will help us enable
 ;; the desired features and improve our workflow.
 
-
 ;;; EMACS
 ;;  This is biggest one. Keep going, plugins (oops, I mean packages) will be shorter :)
 (use-package emacs
@@ -203,7 +120,7 @@
   (delete-selection-mode 1)                       ;; Enable replacing selected text with typed text.
   (display-line-numbers-type 'relative)           ;; Use relative line numbering in programming modes.
   (global-auto-revert-non-file-buffers t)         ;; Automatically refresh non-file buffers.
-  (history-length 25)                             ;; Set the length of the command history.
+  (history-length 100)                             ;; Set the length of the command history.
   (inhibit-startup-message t)                     ;; Disable the startup message when Emacs launches.
   (initial-scratch-message "")                    ;; Clear the initial message in the *scratch* buffer.
   (ispell-dictionary "en_US")                     ;; Set the default dictionary for spell checking.
@@ -219,7 +136,7 @@
   (truncate-lines t)                              ;; Enable line truncation to avoid wrapping long lines.
   (use-dialog-box nil)                            ;; Disable dialog boxes in favor of minibuffer prompts.
   (use-short-answers t)                           ;; Use short answers in prompts for quicker responses (y instead of yes)
-  (warning-minimum-level :emergency)              ;; Set the minimum level of warnings to display.
+  ;; (warning-minimum-level :emergency)              ;; Set the minimum level of warnings to display.
 
   :hook                                           ;; Add hooks to enable specific features in certain modes.
   (prog-mode . display-line-numbers-mode)         ;; Enable line numbers in programming modes.
@@ -236,7 +153,7 @@
 
   ;; Configure font settings based on the operating system.
   ;; Ok, this kickstart is meant to be used on the terminal, not on GUI.
-  ;; But without this, I fear you could start Graphical Emacs and be sad :(
+  ;; But without this, I fear you could start Graphical Emacs and be sad 
   (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font"  :height 100)
   (when (eq system-type 'darwin)       ;; Check if the system is macOS.
     (setq mac-command-modifier 'meta)  ;; Set the Command key to act as the Meta key.
@@ -362,26 +279,74 @@
         (setq insert-directory-program gls)))))
 
 
-;;; ERC
-;; In this section, we introduce ERC (Emacs Relay Chat), a built-in IRC client
-;; that allows you to engage in real-time chat directly within Emacs. While
-;; we're aiming to maintain functionality similar to Neovim, it's important to
-;; recognize that Emacs is often viewed as more than just a text editor. Many
-;; users leverage Emacs for a variety of tasks beyond editing text: from watching
-;; videos and listening to music, to managing emails and even serving as a window
-;; manager in Xorg, freeing themselves from traditional desktop environments.
-;;
-;; While this kickstarter focuses on essential configurations, I wanted to present
-;; ERC as a glimpse into Emacs's versatility. With ERC, you can seamlessly connect
-;; to IRC channels and interact with communities without leaving your editor.
-(use-package erc
-  :defer t ;; Load ERC when needed rather than at startup. (Load it with `M-x erc RET')
+(use-package desktop
+  :ensure nil
   :custom
-  (erc-join-buffer 'window)                                        ;; Open a new window for joining channels.
-  (erc-hide-list '("JOIN" "PART" "QUIT"))                          ;; Hide messages for joins, parts, and quits to reduce clutter.
-  (erc-timestamp-format "[%H:%M]")                                 ;; Format for timestamps in messages.
-  (erc-autojoin-channels-alist '((".*\\.libera\\.chat" "#emacs"))));; Automatically join the #emacs channel on Libera.Chat.
+  (desktop-path (list user-emacs-directory))
+  (desktop-auto-save-timeout 600)
+  :config
+  (desktop-save-mode 1))
 
+(use-package repeat
+  :ensure nil
+  :config
+  (repeat-mode 1))
+
+(defun ap/define-holiday (month day year &optional name)
+  (list (list month day year) (or name "")))
+
+(defcustom ap/tamu-holidays
+  (list (ap/define-holiday 10 13 2025 "Fall Break")
+        (ap/define-holiday 10 14 2025 "Fall Break")
+        (ap/define-holiday 3 9 2025 "Spring Break")
+        (ap/define-holiday 3 9 2026 "Spring Break")
+        (ap/define-holiday 3 10 2026 "Spring Break")
+        (ap/define-holiday 3 11 2026 "Spring Break")
+        (ap/define-holiday 3 12 2026 "Spring Break"))
+  "List of days Texas A&M has no classes.")
+
+(defun calendar-in-range-p (d1 d2 x)
+  "Is date X between the dates D1 and D2?"
+  (and (calendar-date-compare (list d1) x) (null (calendar-date-compare (list d2) x))))
+
+(defun ap/filter-holidays (holidays)
+  (let ((m1 displayed-month)
+        (m2 displayed-month)
+        (y1 displayed-year)
+        (y2 displayed-year))
+    (calendar-increment-month m1 y1 -1)
+    (calendar-increment-month m2 y2 1)
+    (let ((d1 (list m1 1 y1)) (d2 (list m2 (calendar-last-day-of-month m2 y2) y2)))
+      (cl-remove-if 'null (mapcar (lambda (x)
+                                    (if (calendar-in-range-p d1 d2 x)
+                                        x
+                                      nil)
+                                    )
+                                  holidays)))))
+(use-package holidays
+  :ensure nil
+  :init
+  ;; Disable unused holidays:
+  (setq
+   holiday-hebrew-holidays nil
+   holiday-bahai-holidays nil
+   holiday-islamic-holidays nil
+   holiday-oriental-holidays nil)
+  ;; Attach our custom holiday lists:
+  (setq holiday-other-holidays
+        '((holiday-float 11 4 3 "Thanksgiving Break")
+          (holiday-float 11 4 5 "Thanksgiving Break")
+          (ap/filter-holidays ap/tamu-holidays)
+          (ap/filter-holidays ap/daycare-closed)))
+  ;; This gets overwritten somehow:
+  (setq calendar-holidays (append holiday-general-holidays holiday-local-holidays
+                                  holiday-other-holidays holiday-christian-holidays
+                                  holiday-hebrew-holidays holiday-islamic-holidays
+                                  holiday-bahai-holidays holiday-oriental-holidays
+                                  holiday-solar-holidays))
+  :config
+  (with-eval-after-load 'org
+    (setq org-agenda-include-diary t)))
 
 ;;; ISEARCH
 ;; In this configuration, we're setting up isearch, Emacs's incremental search feature.
@@ -481,17 +446,6 @@
      (note "»" compilation-info))))
 
 
-;;; ORG-MODE
-;; Org-mode is a powerful system for organizing and managing your notes,
-;; tasks, and documents in plain text. It offers features like task management,
-;; outlining, scheduling, and much more, making it a versatile tool for
-;; productivity. The configuration below simply defers loading Org-mode until
-;; it's explicitly needed, which can help speed up Emacs startup time.
-(use-package org
-  :ensure nil     ;; This is built-in, no need to fetch it.
-  :defer t)       ;; Defer loading Org-mode until it's needed.
-
-
 ;;; WHICH-KEY
 ;; `which-key' is an Emacs package that displays available keybindings in a
 ;; popup window whenever you partially type a key sequence. This is particularly
@@ -509,6 +463,9 @@
 ;;
 ;; From this point onward, all configurations will be for third-party packages
 ;; that enhance Emacs' functionality and extend its capabilities.
+
+(use-package hydra
+  :straight t)
 
 ;;; VERTICO
 ;; Vertico enhances the completion experience in Emacs by providing a
@@ -530,10 +487,18 @@
   :straight t
   :hook
   (after-init . vertico-mode)           ;; Enable vertico after Emacs has initialized.
+  (minibuffer-setup . vertico-repeat-save)
   :custom
   (vertico-count 10)                    ;; Number of candidates to display in the completion list.
   (vertico-resize nil)                  ;; Disable resizing of the vertico minibuffer.
   (vertico-cycle nil)                   ;; Do not cycle through candidates when reaching the end of the list.
+  :general-config
+   ("M-R" #'vertico-repeat)
+  (:keymaps 'vertico-map
+			"M-q" #'vertico-quick-insert
+			"C-q" #'vertico-quick-exit
+			"M-P" #'vertico-repeat-previous
+			"M-N" #'vertico-repeat-next)
   :config
   ;; Customize the display of the current candidate in the completion list.
   ;; This will prefix the current candidate with “» ” to make it stand out.
@@ -585,13 +550,35 @@
   :ensure t
   :straight t
   :defer t
+  :custom
+  (consult-narrow-key "<")
+  (consult-widen-key ">")
+  :general-config
+  ([remap switch-to-buffer]  'ap/project-buffers
+   [remap switch-to-buffer-other-window]  'consult-buffer-other-window
+   [remap switch-to-buffer-other-frame]  'consult-buffer-other-frame
+   [remap goto-line]  'consult-goto-line
+   [remap imenu]  'consult-imenu
+   [remap browse-kill-ring]  'consult-yank-from-kill-ring
+   [remap recentf]  'consult-recent-file
+   "<leader> A"  'consult-org-agenda
+   "<leader> B"  'consult-buffer)
+
   :init
   ;; Enhance register preview with thin lines and no mode line.
   (advice-add #'register-preview :override #'consult-register-window)
 
   ;; Use Consult for xref locations with a preview feature.
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref))
+		xref-show-definitions-function #'consult-xref)
+
+  (defun ap/project-buffers (&optional sources)
+	"Display buffers using  `consult-buffer', narrowed to only project files.
+
+Pass SOURCES to consult-buffer, if provided."
+    (interactive)
+    (setq unread-command-events (append unread-command-events (list ?p 32)))
+    (consult-buffer sources)))
 
 
 ;;; EMBARK
@@ -601,10 +588,23 @@
 ;; actions on the candidates.
 ;; Just `<leader> .' over any text, explore it :)
 (use-package embark
-  :ensure t
   :straight t
-  :defer t)
-
+  :general-config
+  ("C-;" 'embark-act)
+  (:keymaps 'vertico-map
+			"C-c C-o" 'embark-collect
+			"C-c C-e" 'embark-export
+			"C-c C-c" 'embark-act)
+  (:keymaps 'minibuffer-mode-map
+			"C-c C-o" 'embark-collect
+			"C-c C-e" 'embark-export)
+  (:keymaps 'embark-general-map
+			"/" 'consult-ripgrep)
+  :config
+  ;; Use embark for completion help
+  (with-eval-after-load 'which-key
+	(setq prefix-help-command #'embark-prefix-help-command)))
+  
 
 ;;; EMBARK-CONSULT
 ;; Embark-Consult provides a bridge between Embark and Consult, ensuring
@@ -632,134 +632,85 @@
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode t))
 
-
-;;; MARKDOWN-MODE
-;; Markdown Mode provides support for editing Markdown files in Emacs,
-;; enabling features like syntax highlighting, previews, and more.
-;; It’s particularly useful for README files, as it can be set
-;; to use GitHub Flavored Markdown for enhanced compatibility.
-(use-package markdown-mode
-  :defer t
+(use-package corfu
   :straight t
-  :ensure t
-  :mode ("README\\.md\\'" . gfm-mode)            ;; Use gfm-mode for README.md files.
-  :init (setq markdown-command "multimarkdown")) ;; Set the Markdown processing command.
-
-
-;;; COMPANY
-;; Company Mode provides a text completion framework for Emacs.
-;; It enhances the editing experience by offering context-aware
-;; suggestions as you type. With support for multiple backends,
-;; Company Mode is highly customizable and can be integrated with
-;; various modes and languages.
-(use-package company
-  :defer t
-  :straight t
-  :ensure t
-  :custom
-  (company-tooltip-align-annotations t)      ;; Align annotations with completions.
-  (company-minimum-prefix-length 1)          ;; Trigger completion after typing 1 character
-  (company-idle-delay 0.2)                   ;; Delay before showing completion (adjust as needed)
-  (company-tooltip-maximum-width 50)
-  :config
-
-  ;; While using C-p C-n to select a completion candidate
-  ;; C-y quickly shows help docs for the current candidate
-  (define-key company-active-map (kbd "C-y")
-              (lambda ()
-                (interactive)
-                (company-show-doc-buffer)))
-  (define-key company-active-map [tab] 'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
-  (define-key company-active-map [ret] 'company-complete-selection)
-  (define-key company-active-map (kbd "RET") 'company-complete-selection)
-  :hook
-  (after-init . global-company-mode)) ;; Enable Company Mode globally after initialization.
-
-
-;;; LSP
-;; Emacs comes with an integrated LSP client called `eglot', which offers basic LSP functionality.
-;; However, `eglot' has limitations, such as not supporting multiple language servers
-;; simultaneously within the same buffer (e.g., handling both TypeScript, Tailwind and ESLint
-;; LSPs together in a React project). For this reason, the more mature and capable
-;; `lsp-mode' is included as a third-party package, providing advanced IDE-like features
-;; and better support for multiple language servers and configurations.
-;;
-;; NOTE: To install or reinstall an LSP server, use `M-x install-server RET`.
-;;       As with other editors, LSP configurations can become complex. You may need to
-;;       install or reinstall the server for your project due to version management quirks
-;;       (e.g., asdf or nvm) or other issues.
-;;       Fortunately, `lsp-mode` has a great resource site:
-;;       https://emacs-lsp.github.io/lsp-mode/
-(use-package lsp-mode
-  :ensure t
-  :straight t
-  :defer t
-  :hook (;; Replace XXX-mode with concrete major mode (e.g. python-mode)
-         (bash-ts-mode . lsp)                           ;; Enable LSP for Bash
-         (typescript-ts-mode . lsp)                     ;; Enable LSP for TypeScript
-         (tsx-ts-mode . lsp)                            ;; Enable LSP for TSX
-         (js-mode . lsp)                                ;; Enable LSP for JavaScript
-         (js-ts-mode . lsp)                             ;; Enable LSP for JavaScript (TS mode)
-         (lsp-mode . lsp-enable-which-key-integration)) ;; Integrate with Which Key
-  :commands lsp
-  :custom
-  (lsp-keymap-prefix "C-c l")                           ;; Set the prefix for LSP commands.
-  (lsp-inlay-hint-enable t)                             ;; Enable inlay hints.
-  (lsp-completion-provider :none)                       ;; Disable the default completion provider.
-  (lsp-session-file (locate-user-emacs-file ".lsp-session")) ;; Specify session file location.
-  (lsp-log-io nil)                                      ;; Disable IO logging for speed.
-  (lsp-idle-delay 0)                                    ;; Set the delay for LSP to 0 (debouncing).
-  (lsp-keep-workspace-alive nil)                        ;; Disable keeping the workspace alive.
-  ;; Core settings
-  (lsp-enable-xref t)                                   ;; Enable cross-references.
-  (lsp-auto-configure t)                                ;; Automatically configure LSP.
-  (lsp-enable-links nil)                                ;; Disable links.
-  (lsp-eldoc-enable-hover t)                            ;; Enable ElDoc hover.
-  (lsp-enable-file-watchers nil)                        ;; Disable file watchers.
-  (lsp-enable-folding nil)                              ;; Disable folding.
-  (lsp-enable-imenu t)                                  ;; Enable Imenu support.
-  (lsp-enable-indentation nil)                          ;; Disable indentation.
-  (lsp-enable-on-type-formatting nil)                   ;; Disable on-type formatting.
-  (lsp-enable-suggest-server-download t)                ;; Enable server download suggestion.
-  (lsp-enable-symbol-highlighting t)                    ;; Enable symbol highlighting.
-  (lsp-enable-text-document-color nil)                  ;; Disable text document color.
-  ;; Modeline settings
-  (lsp-modeline-code-actions-enable nil)                ;; Keep modeline clean.
-  (lsp-modeline-diagnostics-enable nil)                 ;; Use `flymake' instead.
-  (lsp-modeline-workspace-status-enable t)              ;; Display "LSP" in the modeline when enabled.
-  (lsp-signature-doc-lines 1)                           ;; Limit echo area to one line.
-  (lsp-eldoc-render-all nil)                              ;; Render all ElDoc messages.
-  ;; Completion settings
-  (lsp-completion-enable t)                             ;; Enable completion.
-  (lsp-completion-enable-additional-text-edit t)        ;; Enable additional text edits for completions.
-  (lsp-enable-snippet nil)                              ;; Disable snippets
-  (lsp-completion-show-kind t)                          ;; Show kind in completions.
-  ;; Lens settings
-  (lsp-lens-enable t)                                   ;; Enable lens support.
-  ;; Headerline settings
-  (lsp-headerline-breadcrumb-enable-symbol-numbers t)   ;; Enable symbol numbers in the headerline.
-  (lsp-headerline-arrow "▶")                            ;; Set arrow for headerline.
-  (lsp-headerline-breadcrumb-enable-diagnostics nil)    ;; Disable diagnostics in headerline.
-  (lsp-headerline-breadcrumb-icons-enable nil)          ;; Disable icons in breadcrumb.
-  ;; Semantic settings
-  (lsp-semantic-tokens-enable nil))                     ;; Disable semantic tokens.
-
-
-;;; LSP Additional Servers
-;; You can extend `lsp-mode' by integrating additional language servers for specific
-;; technologies. For example, `lsp-tailwindcss' provides support for Tailwind CSS
-;; classes within your HTML files. By using various LSP packages, you can connect
-;; multiple LSP servers simultaneously, enhancing your coding experience across
-;; different languages and frameworks.
-(use-package lsp-tailwindcss
-  :ensure t
-  :straight t
-  :defer t
-  :config
-  (add-to-list 'lsp-language-id-configuration '(".*\\.erb$" . "html")) ;; Associate ERB files with HTML.
   :init
-  (setq lsp-tailwindcss-add-on-mode t))
+  (setq completion-cycle-threshold 4)
+  (setq completion-auto-select 'second-tab)
+  :hook (after-init . global-corfu-mode)
+  :general-config
+  ("C-x C-o" 'completion-at-point)
+  (:keymaps 'corfu-map
+			"C-c" 'corfu-quit
+			"C-g" 'corfu-quit
+			"Tab" 'corfu-insert
+			"C-y" 'corfu-insert
+			"M-t" 'corfu-popupinfo-toggle
+			"M-n" 'corfu-popupinfo-scroll-down
+			"M-p" 'corfu-popupinfo-scroll-up
+			"M-q" #'corfu-quick-complete
+			"C-q" #'corfu-quick-insert)
+  :custom
+  (corfu-auto nil)
+  (corfu-quit-no-match 'separator)
+  :config
+  (corfu-popupinfo-mode)
+
+  (defun corfu-enable-in-minibuffer ()
+    "Enable Corfu in the minibuffer."
+    (when (local-variable-p 'completion-at-point-functions)
+      ;; (setq-local corfu-auto nil) ;; Enable/disable auto completion
+      (setq-local corfu-echo-delay nil ;; Disable automatic echo and popup
+                  corfu-popupinfo-delay nil)
+      (corfu-mode 1)))
+  (add-hook 'minibuffer-setup-hook #'corfu-enable-in-minibuffer)
+
+  (defun corfu-move-to-minibuffer ()
+    (interactive)
+    (pcase completion-in-region--data
+      (`(,beg ,end ,table ,pred ,extras)
+       (let ((completion-extra-properties extras)
+             completion-cycle-threshold completion-cycling)
+         (consult-completion-in-region beg end table pred)))))
+  (keymap-set corfu-map "M-m" #'corfu-move-to-minibuffer)
+  (add-to-list 'corfu-continue-commands #'corfu-move-to-minibuffer)
+
+  (require 'corfu-quick))
+
+(use-package cape
+  :straight t
+  :commands (cape-keyword cape-dabbrev)
+  :general
+  (general-imap
+    "C-x C-f" #'cape-file
+    "C-x C-k" #'cape-dict)
+  :hook ((markdown-mode org-mode) .
+         (lambda ()
+           (setq-local completion-at-point-functions (list #'cape-dict #'cape-keyword #'cape-dabbrev)
+                       completion-styles '(basic)))))
+
+(use-package completion-preview
+  :ensure nil
+  :diminish completion-preview-mode
+  :hook (((prog-mode org-mode markdown-mode) . completion-preview-mode)
+         (org-mode . (lambda ()
+                       (electric-indent-local-mode -1)
+                       ;; need to overwrite `completion-preview-commands' to trigger
+                       ;; completion-preview
+                       (setq-local completion-preview-commands
+                                   '(;; self-insert-command
+                                     evil-delete-backward-char-and-join
+                                     org-self-insert-command
+                                     insert-char
+                                     delete-backward-char
+                                     org-delete-backward-char
+                                     backward-delete-char-untabify
+                                     analyze-text-conversion
+                                     completion-preview-complete)))))
+  :general-config
+  (:keymaps 'completion-preview-active-mode-map
+            "M-n" 'completion-preview-next-candidate
+            "M-p" 'completion-preview-prev-candidate))
 
 
 ;;; Diff-HL
@@ -827,55 +778,6 @@
   (after-init . xclip-mode))     ;; Enable xclip mode after initialization.
 
 
-;;; INDENT-GUIDE
-;; The `indent-guide' package provides visual indicators for indentation levels
-;; in programming modes, making it easier to see code structure at a glance.
-;; It draws vertical lines (by default, a character of your choice) at each
-;; level of indentation, helping to improve readability and navigation within
-;; the code.
-(use-package indent-guide
-  :defer t
-  :straight t
-  :ensure t
-  :hook
-  (prog-mode . indent-guide-mode)  ;; Activate indent-guide in programming modes.
-  :config
-  (setq indent-guide-char "│"))    ;; Set the character used for the indent guide.
-
-
-;;; ADD-NODE-MODULES-PATH
-;; The `add-node-modules-path' package ensures that Emacs uses the local
-;; `node_modules/.bin' for a project rather than globally installed binaries.
-;; This is essential in JavaScript/TypeScript projects where different versions
-;; of tools like `eslint' and `typescript-language-server' might be needed
-;; per project.
-;;
-;; This setup helps prevent conflicts between global and local versions of
-;; Node.js tools and ensures consistency across different environments.
-;;
-;; Example in the wild: This is an example of a real-world issue often faced
-;; by developers using modern tech stacks. When working on multiple projects
-;; with different dependencies, Emacs must use the correct local versions
-;; instead of relying on globally installed packages. This configuration
-;; ensures that the environment is accurate and project-specific tools are
-;; properly utilized.
-(use-package add-node-modules-path
-  :ensure t
-  :straight t
-  :defer t
-  :custom
-  ;; Makes sure you are using the local bin for your
-  ;; node project. Local eslint, typescript server...
-  (eval-after-load 'typescript-ts-mode
-    '(add-hook 'typescript-ts-mode-hook #'add-node-modules-path))
-  (eval-after-load 'tsx-ts-mode
-    '(add-hook 'tsx-ts-mode-hook #'add-node-modules-path))
-  (eval-after-load 'typescriptreact-mode
-    '(add-hook 'typescriptreact-mode-hook #'add-node-modules-path))
-  (eval-after-load 'js-mode
-    '(add-hook 'js-mode-hook #'add-node-modules-path)))
-
-
 ;; EVIL
 ;; The `evil' package provides Vim emulation within Emacs, allowing
 ;; users to edit text in a modal way, similar to how Vim
@@ -884,144 +786,152 @@
 (use-package evil
   :ensure t
   :straight t
-  :defer t
-  :hook
-  (after-init . evil-mode)
+  :hook ((org-mode . evil-visual-state)
+		 (markdown-mode . evil-visual-state)
+		 (visual-line-mode . evil-visual-state))
   :init
-  (setq evil-want-integration t)      ;; Integrate `evil' with other Emacs features (optional as it's true by default).
-  (setq evil-want-keybinding nil)     ;; Disable default keybinding to set custom ones.
-  (setq evil-want-C-u-scroll t)       ;; Makes C-u scroll
-  (setq evil-want-C-u-delete t)       ;; Makes C-u delete on insert mode
+  (setq
+   evil-undo-system 'undo-fu
+   evil-want-fine-undo t
+   evil-want-Y-yank-to-eol t
+   evil-want-integration t      ;; Integrate `evil' with other Emacs features (optional as it's true by default).
+   evil-want-keybinding nil     ;; Disable default keybinding to set custom ones.
+   evil-want-C-u-scroll t       ;; Makes C-u scroll
+   evil-want-C-u-delete t)       ;; Makes C-u delete on insert mode
+  :general-config
+  (general-nivmap
+	"C-n" 'evil-next-line
+	"C-p" 'evil-previous-line)
+  (general-imap
+	"C-e" 'move-end-of-line
+	"C-a" 'move-beginning-of-line)
+  (general-imap
+	"C-y" 'yank
+	"M-y" 'yank-pop)
+  (general-imap :keymaps 'org-mode-map
+	"C-y" 'org-yank)
+  (general-imap
+	"C-t" nil ;; unbind C-t for indentation
+	"C->" 'evil-shift-right-line
+	"C-<" 'evil-shift-left-line
+	"C-d" 'delete-char)
+  (general-vmap :keymaps 'emacs-lisp-mode-map
+	"gx" 'eval-region)
+  (general-nmap :keymaps 'emacs-lisp-mode-map
+	"gx" 'evil-eval-region)
+  ;; Universal argument support:
+  (general-nmap
+	"<leader> u" 'universal-argument)
+  (:keymaps 'universal-argument-map
+			"<leader> u" 'universal-argument-more
+			"C-u" 'universal-argument-more)
+  (general-nivmap
+	"<leader> s f" 'consult-find
+	"<leader> s g" 'consult-grep
+	"<leader> s G" 'consult-git-grep
+	"<leader> s r" 'consult-ripgrep
+	"<leader> s h" 'consult-info
+	"<leader> /" 'consult-line
+	
+	;; Flymake navigation
+	"<leader> x x" 'consult-flymake;; Gives you something like `trouble.nvim'
+
+	;; Dired commands for file management
+	"<leader> x d" 'dired
+	"<leader> x j" 'dired-jump
+	"<leader> x f" 'find-file
+
+	;; NeoTree command for file exploration
+	"<leader> e d" 'dired-jump
+
+	;; Magit keybindings for Git integration
+	"<leader> v g" 'magit-status      ;; Open Magit status
+	"<leader> v l" 'magit-log-current ;; Show current log
+	"<leader> v d" 'magit-diff-buffer-file ;; Show diff for the current file
+	"<leader> v D" 'diff-hl-show-hunk ;; Show diff for a hunk
+	"<leader> v b" 'vc-annotate       ;; Annotate buffer with version control info
+
+	"<leader> b i" 'consult-buffer ;; Open consult buffer list
+	"<leader> b b" 'ibuffer ;; Open Ibuffer
+	"<leader> b d" 'kill-current-buffer ;; Kill current buffer
+	"<leader> b k" 'kill-current-buffer ;; Kill current buffer
+	"<leader> b x" 'kill-current-buffer ;; Kill current buffer
+	"<leader> b s" 'save-buffer ;; Save buffer
+	"<leader> b l" 'consult-buffer ;; Consult buffer
+	"<leader>SPC" 'consult-buffer ;; Consult buffer
+
+	;; Project management keybindings
+	"<leader> p b" 'consult-project-buffer ;; Consult project buffer
+	"<leader> p p" 'project-switch-project ;; Switch project
+	"<leader> p f" 'project-find-file ;; Find file in project
+	"<leader> p g" 'project-find-regexp ;; Find regexp in project
+	"<leader> p k" 'project-kill-buffers ;; Kill project buffers
+	"<leader> p D" 'project-dired ;; Dired for project
+
+	;; Yank from kill ring
+	"<leader> P" 'consult-yank-from-kill-ring
+
+	;; Embark actions for contextual commands
+	"<leader> ." 'embark-act
+
+	;; Help keybindings
+	"<leader> h m" 'describe-mode ;; Describe current mode
+	"<leader> h f" 'describe-function ;; Describe function
+	"<leader> h v" 'describe-variable ;; Describe variable
+	"<leader> h k" 'describe-key ;; Describe key
+
+	;; Custom example. Formatting with prettier tool.
+	"<leader> m p"
+	(lambda ()
+	  (interactive)
+	  (shell-command (concat "prettier --write " (shell-quote-argument (buffer-file-name))))
+	  (revert-buffer t t t)))
+  (general-nmap
+	;; Tab navigation
+	"] t" 'tab-next ;; Go to next tab
+	"[ t" 'tab-previous ;; Go to previous tab
+	;; Buffer management keybindings
+	"] b" 'switch-to-next-buffer ;; Switch to next buffer
+	"[ b" 'switch-to-prev-buffer ;; Switch to previous buffer
+	"] d" 'flymake-goto-next-error ;; Go to next Flymake error
+	"[ d" 'flymake-goto-prev-error ;; Go to previous Flymake error
+	;; Diff-HL navigation for version control
+	"] c" 'diff-hl-next-hunk ;; Next diff hunk
+	"[ c" 'diff-hl-previous-hunk) ;; Previous diff hunk
+
   :config
-  (evil-set-undo-system 'undo-tree)   ;; Uses the undo-tree package as the default undo system
-
   ;; Set the leader key to space for easier access to custom commands. (setq evil-want-leader t)
-  (setq evil-leader/in-all-states t)  ;; Make the leader key available in all states.
-  (setq evil-want-fine-undo t)        ;; Evil uses finer grain undoing steps
+  ;; (evil-set-leader nil (kbd "C-c l") t)
+  (evil-set-leader nil (kbd "C-c"))
 
-  ;; Define the leader key as Space
-  (evil-set-leader 'normal (kbd "SPC"))
-  (evil-set-leader 'visual (kbd "SPC"))
+  (define-advice forward-evil-paragraph (:around (orig-fun &rest args))
+    (let ((paragraph-start (default-value 'paragraph-start))
+          (paragraph-separate (default-value 'paragraph-separate))
+          (paragraph-ignore-fill-prefix t))
+      (apply orig-fun args)))
 
-  ;; Keybindings for searching and finding files.
-  (evil-define-key 'normal 'global (kbd "<leader> s f") 'consult-find)
-  (evil-define-key 'normal 'global (kbd "<leader> s g") 'consult-grep)
-  (evil-define-key 'normal 'global (kbd "<leader> s G") 'consult-git-grep)
-  (evil-define-key 'normal 'global (kbd "<leader> s r") 'consult-ripgrep)
-  (evil-define-key 'normal 'global (kbd "<leader> s h") 'consult-info)
-  (evil-define-key 'normal 'global (kbd "<leader> /") 'consult-line)
+  (evil-define-operator evil-eval-region (beg end)
+    "evaluate the region."
+    (eval-region beg end))
 
-  ;; Flymake navigation
-  (evil-define-key 'normal 'global (kbd "<leader> x x") 'consult-flymake);; Gives you something like `trouble.nvim'
-  (evil-define-key 'normal 'global (kbd "] d") 'flymake-goto-next-error) ;; Go to next Flymake error
-  (evil-define-key 'normal 'global (kbd "[ d") 'flymake-goto-prev-error) ;; Go to previous Flymake error
+  (evil-define-text-object +evil:whole-buffer-txtobj (count &optional _beg _end type)
+	"Text object to select the whole buffer."
+	(evil-range (point-min) (point-max) type))
 
-  ;; Dired commands for file management
-  (evil-define-key 'normal 'global (kbd "<leader> x d") 'dired)
-  (evil-define-key 'normal 'global (kbd "<leader> x j") 'dired-jump)
-  (evil-define-key 'normal 'global (kbd "<leader> x f") 'find-file)
+  (general-define-key :keymaps 'evil-inner-text-objects-map
+					  "g" '+evil:whole-buffer-txtobj
+					  :keymaps 'evil-outer-text-objects-map
+					  "g" '+evil:whole-buffer-txtobj)
 
-  ;; Diff-HL navigation for version control
-  (evil-define-key 'normal 'global (kbd "] c") 'diff-hl-next-hunk) ;; Next diff hunk
-  (evil-define-key 'normal 'global (kbd "[ c") 'diff-hl-previous-hunk) ;; Previous diff hunk
-
-  ;; NeoTree command for file exploration
-  (evil-define-key 'normal 'global (kbd "<leader> e e") 'neotree-toggle)
-  (evil-define-key 'normal 'global (kbd "<leader> e d") 'dired-jump)
-
-  ;; Magit keybindings for Git integration
-  (evil-define-key 'normal 'global (kbd "<leader> g g") 'magit-status)      ;; Open Magit status
-  (evil-define-key 'normal 'global (kbd "<leader> g l") 'magit-log-current) ;; Show current log
-  (evil-define-key 'normal 'global (kbd "<leader> g d") 'magit-diff-buffer-file) ;; Show diff for the current file
-  (evil-define-key 'normal 'global (kbd "<leader> g D") 'diff-hl-show-hunk) ;; Show diff for a hunk
-  (evil-define-key 'normal 'global (kbd "<leader> g b") 'vc-annotate)       ;; Annotate buffer with version control info
-
-  ;; Buffer management keybindings
-  (evil-define-key 'normal 'global (kbd "] b") 'switch-to-next-buffer) ;; Switch to next buffer
-  (evil-define-key 'normal 'global (kbd "[ b") 'switch-to-prev-buffer) ;; Switch to previous buffer
-  (evil-define-key 'normal 'global (kbd "<leader> b i") 'consult-buffer) ;; Open consult buffer list
-  (evil-define-key 'normal 'global (kbd "<leader> b b") 'ibuffer) ;; Open Ibuffer
-  (evil-define-key 'normal 'global (kbd "<leader> b d") 'kill-current-buffer) ;; Kill current buffer
-  (evil-define-key 'normal 'global (kbd "<leader> b k") 'kill-current-buffer) ;; Kill current buffer
-  (evil-define-key 'normal 'global (kbd "<leader> b x") 'kill-current-buffer) ;; Kill current buffer
-  (evil-define-key 'normal 'global (kbd "<leader> b s") 'save-buffer) ;; Save buffer
-  (evil-define-key 'normal 'global (kbd "<leader> b l") 'consult-buffer) ;; Consult buffer
-  (evil-define-key 'normal 'global (kbd "<leader>SPC") 'consult-buffer) ;; Consult buffer
-
-  ;; Project management keybindings
-  (evil-define-key 'normal 'global (kbd "<leader> p b") 'consult-project-buffer) ;; Consult project buffer
-  (evil-define-key 'normal 'global (kbd "<leader> p p") 'project-switch-project) ;; Switch project
-  (evil-define-key 'normal 'global (kbd "<leader> p f") 'project-find-file) ;; Find file in project
-  (evil-define-key 'normal 'global (kbd "<leader> p g") 'project-find-regexp) ;; Find regexp in project
-  (evil-define-key 'normal 'global (kbd "<leader> p k") 'project-kill-buffers) ;; Kill project buffers
-  (evil-define-key 'normal 'global (kbd "<leader> p D") 'project-dired) ;; Dired for project
-
-  ;; Yank from kill ring
-  (evil-define-key 'normal 'global (kbd "P") 'consult-yank-from-kill-ring)
-  (evil-define-key 'normal 'global (kbd "<leader> P") 'consult-yank-from-kill-ring)
-
-  ;; Embark actions for contextual commands
-  (evil-define-key 'normal 'global (kbd "<leader> .") 'embark-act)
-
-  ;; Undo tree visualization
-  (evil-define-key 'normal 'global (kbd "<leader> u") 'undo-tree-visualize)
-
-  ;; Help keybindings
-  (evil-define-key 'normal 'global (kbd "<leader> h m") 'describe-mode) ;; Describe current mode
-  (evil-define-key 'normal 'global (kbd "<leader> h f") 'describe-function) ;; Describe function
-  (evil-define-key 'normal 'global (kbd "<leader> h v") 'describe-variable) ;; Describe variable
-  (evil-define-key 'normal 'global (kbd "<leader> h k") 'describe-key) ;; Describe key
-
-  ;; Tab navigation
-  (evil-define-key 'normal 'global (kbd "] t") 'tab-next) ;; Go to next tab
-  (evil-define-key 'normal 'global (kbd "[ t") 'tab-previous) ;; Go to previous tab
-
-
-  ;; Custom example. Formatting with prettier tool.
-  (evil-define-key 'normal 'global (kbd "<leader> m p")
-                   (lambda ()
-                     (interactive)
-                     (shell-command (concat "prettier --write " (shell-quote-argument (buffer-file-name))))
-                     (revert-buffer t t t)))
-
-  ;; LSP commands keybindings
-  (evil-define-key 'normal lsp-mode-map
-                   ;; (kbd "gd") 'lsp-find-definition                ;; evil-collection already provides gd
-                   (kbd "gr") 'lsp-find-references                   ;; Finds LSP references
-                   (kbd "<leader> c a") 'lsp-execute-code-action     ;; Execute code actions
-                   (kbd "<leader> r n") 'lsp-rename                  ;; Rename symbol
-                   (kbd "gI") 'lsp-find-implementation               ;; Find implementation
-                   (kbd "<leader> l f") 'lsp-format-buffer)          ;; Format buffer via lsp
-
-
-  (defun ek/lsp-describe-and-jump ()
-    "Show hover documentation and jump to *lsp-help* buffer."
-    (interactive)
-    (lsp-describe-thing-at-point)
-    (let ((help-buffer "*lsp-help*"))
-      (when (get-buffer help-buffer)
-        (switch-to-buffer-other-window help-buffer))))
-  ;; Open hover documentation
-  (evil-define-key 'normal 'global (kbd "K") 'ek/lsp-describe-and-jump)
-  ;; Yeah, on terminals, Emacs doesn't support (YET), the use of floating windows,
-  ;; thus, this will open a small buffer bellow your window.
-  ;; This floating frames are called "child frames" and some recent effort is being put
-  ;; into having a translation of those marvelous GUI stuff to terminal. Let's hope
-  ;; we add this to Emacs Kick soom :)
-
-  ;; Commenting functionality for single and multiple lines
-  (evil-define-key 'normal 'global (kbd "gcc")
-                   (lambda ()
-                     (interactive)
-                     (if (not (use-region-p))
-                         (comment-or-uncomment-region (line-beginning-position) (line-end-position)))))
-
-  (evil-define-key 'visual 'global (kbd "gc")
-                   (lambda ()
-                     (interactive)
-                     (if (use-region-p)
-                         (comment-or-uncomment-region (region-beginning) (region-end)))))
-
+	(defvar-keymap 'evil-window-repeat-map
+	  :repeat t
+	  "+" 'evil-window-increase-height
+	  "-" 'evil-window-decrease-height
+	  ">" 'evil-window-increase-width
+	  "<" 'evil-window-decrease-width
+	  "=" 'balance-windows)
+  
+  
   ;; Enable evil mode
   (evil-mode 1))
 
@@ -1059,6 +969,43 @@
   :config
   (global-evil-surround-mode 1))
 
+(use-package embrace
+  :straight t
+  :hook (org-mode . embrace-org-mode-hook)
+  :general
+  ("C-," 'embrace-commander))
+
+(use-package evil-embrace
+  :straight t
+  :after evil-surround
+  :config
+  (evil-embrace-enable-evil-surround-integration))
+
+(use-package evil-nerd-commenter
+  :straight t
+  :general
+  ([remap comment-line] #'evilnc-comment-or-uncomment-lines)
+  (general-nvmap "gc" #'evilnc-comment-operator)
+  (:keymaps 'evil-inner-text-objects-map
+            "c" 'evilnc-inner-comment)
+  (:keymaps 'evil-outer-text-objects-map
+            "c" 'evilnc-outer-comment))
+
+(use-package evil-numbers
+  :straight t
+  :general
+  ("<leader> C-+" 'evil-numbers/inc-at-pt
+   "<leader> C-=" 'evil-numbers/inc-at-pt
+   "<leader> C--" 'evil-numbers/dec-at-pt)
+  :config
+  (defvar-keymap evil-numbers-repeat-map
+	:repeat t
+	  "+" 'evil-numbers/inc-at-pt
+	  "=" 'evil-numbers/inc-at-pt
+	  "C-=" 'evil-numbers/inc-at-pt
+	  "C-+" 'evil-numbers/inc-at-pt
+	  "C--" 'evil-numbers/dec-at-pt
+	  "-" 'evil-numbers/dec-at-pt)
 
 ;; EVIL MATCHIT
 ;; The `evil-matchit' package extends `evil-mode' by enabling
@@ -1073,32 +1020,158 @@
   :config
   (global-evil-matchit-mode 1))
 
-
-;; UNDO TREE
-;; The `undo-tree' package provides an advanced and visual way to
-;; manage undo history. It allows you to navigate and visualize your
-;; undo history as a tree structure, making it easier to manage
-;; changes in your buffers.
-(use-package undo-tree
-  :defer t
-  :ensure t
-  :straight t
-  :hook
-  (after-init . global-undo-tree-mode)
-  :init
-  (setq undo-tree-visualizer-timestamps t
-        undo-tree-visualizer-diff t
-        ;; Increase undo limits to avoid losing history due to Emacs' garbage collection.
-        ;; These values can be adjusted based on your needs.
-        ;; 10X bump of the undo limits to avoid issues with premature
-        ;; Emacs GC which truncates the undo history very aggressively.
-        undo-limit 800000                     ;; Limit for undo entries.
-        undo-strong-limit 12000000            ;; Strong limit for undo entries.
-        undo-outer-limit 120000000)           ;; Outer limit for undo entries.
+(use-package targets
+  :straight (targets :type git :host github :repo "noctuid/targets.el")
   :config
-  ;; Set the directory where `undo-tree' will save its history files.
-  ;; This keeps undo history across sessions, stored in a cache directory.
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/.cache/undo"))))
+  (targets-setup t)
+  (targets-define-composite-to anyblock
+    (("(" ")" pair)
+     ("[" "]" pair)
+     ("{" "}" pair)
+     ("<" ">" pair)
+     ("\"" "\"" quote)
+     ("'" "'" quote)
+     ("`" "`" quote)
+     ("“" "”" quote))
+    :bind t
+    :keys "b")
+  (targets-define-composite-to anyquote
+    (("'" "'" quote)
+     ("\"" "\"" quote)
+     ("`" "`" quote)
+     ("‘" "’" quote)
+     ("“" "”" quote))
+    :bind t
+    :keys "q"))
+
+(use-package evil-better-visual-line
+  :straight t
+  :general
+  (general-nvmap
+    "<down>" 'evil-better-visual-line-next-line
+    "<up>" 'evil-better-visual-line-previous-line)
+  :config
+  (evil-better-visual-line-on))
+
+(use-package evil-goggles
+  :straight t
+  :diminish evil-goggles-mode
+  :config
+  (setq evil-goggles-pulse nil)
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-faces))
+
+;; Override evil-replace-register with a function that uses evil-paste and override evil-paste-pop to allow
+;; evil-replace-with-register to count as a paste command.
+(use-package evil-replace-with-register
+  :straight t
+  :custom
+  (evil-replace-with-register-key (kbd "gr"))
+  :config
+
+  (evil-define-operator evil-replace-with-register (count beg end type register)
+    "Replacing an existing text with the contents of a register"
+    :move-point nil
+    (interactive "<vc><R><x>")
+    (setq count (or count 1))
+    (goto-char beg)
+    (if (eq type 'block)
+        (evil-apply-on-block
+         (lambda (begcol endcol)
+           (let ((maxcol (evil-column (line-end-position))))
+             (when (< begcol maxcol)
+               (setq endcol (min endcol maxcol))
+               (let ((beg (evil-move-to-column begcol nil t))
+                     (end (evil-move-to-column endcol nil t)))
+                 (delete-region beg end)
+                 (evil-visual-paste count register))
+               (setq last-command 'evil-visual-paste))))
+         beg end t)
+      (delete-region beg end)
+      (evil-paste-before count register)
+      (setq last-command 'evil-paste-before)
+      (when (and evil-replace-with-register-indent (/= (line-number-at-pos beg) (line-number-at-pos)))
+        ;; indent if more then one line was inserted
+        (save-excursion
+          (evil-indent beg (point))))))
+
+  (advice-add 'evil-paste-pop :override
+                (lambda (count)
+                  "Replace the just-yanked stretch of killed text with a different stretch.
+  This command is allowed only immediatly after a `yank',
+  `evil-paste-before', `evil-paste-after' or `evil-paste-pop'.
+  This command uses the same paste command as before, i.e., when
+  used after `evil-paste-after' the new text is also yanked using
+  `evil-paste-after', used with the same paste-count argument.
+
+  The COUNT argument inserts the COUNTth previous kill.  If COUNT
+  is negative this is a more recent kill."
+                  (interactive "p")
+                  (unless (memq last-command
+                                '(evil-paste-after
+                                  evil-paste-before
+                                  evil-visual-paste
+                                  evil-replace-with-register))
+                    (user-error "Previous command was not an evil-paste: %s" last-command))
+                  (unless evil-last-paste
+                    (user-error "Previous paste command used a register"))
+                  (when (not (eq last-command 'evil-replace-with-register))
+                    (evil-undo-pop))
+                  (goto-char (nth 2 evil-last-paste))
+                  (setq this-command (nth 0 evil-last-paste))
+                  ;; use temporary kill-ring, so the paste cannot modify it
+                  (let ((kill-ring (list (current-kill
+                                          (if (and (> count 0) (nth 5 evil-last-paste))
+                                              ;; if was visual paste then skip the
+                                              ;; text that has been replaced
+                                              (1+ count)
+                                            count))))
+                        (kill-ring-yank-pointer kill-ring))
+                    (when (eq last-command 'evil-visual-paste)
+                      (let ((evil-no-display t))
+                        (evil-visual-restore)))
+                    (funcall (nth 0 evil-last-paste) (nth 1 evil-last-paste))
+                    ;; if this was a visual paste, then mark the last paste as NOT
+                    ;; being the first visual paste
+                    (when (eq last-command 'evil-visual-paste)
+                      (setcdr (nthcdr 4 evil-last-paste) nil)))))
+
+  (evil-define-key '(visual normal) 'global evil-replace-with-register-key 'evil-replace-with-register))
+
+(use-package undo-fu
+  :straight t
+  :hook (after-init . undo-fu-mode)
+  :custom
+  ;; Increase undo history limits to reduce likelihood of data loss
+  (undo-limit 400000)           ; 400kb (default is 160kb)
+  (undo-strong-limit 3000000)   ; 3mb   (default is 240kb)
+  (undo-outer-limit 48000000)  ; 48mb  (default is 24mb)
+  :config
+  (define-minor-mode undo-fu-mode
+    "Enables `undo-fu' for the current session."
+    :keymap (let ((map (make-sparse-keymap)))
+              (define-key map [remap undo] #'undo-fu-only-undo)
+              (define-key map [remap redo] #'undo-fu-only-redo)
+              (define-key map (kbd "C-_")     #'undo-fu-only-undo)
+              (define-key map (kbd "M-_")     #'undo-fu-only-redo)
+              (define-key map (kbd "C-M-_")   #'undo-fu-only-redo-all)
+              (define-key map (kbd "C-x r u") #'undo-fu-session-save)
+              (define-key map (kbd "C-x r U") #'undo-fu-session-recover)
+              map)
+    :init-value nil
+    :global t))
+
+(use-package undo-fu-session
+  :straight t
+  :hook (undo-fu-mode  . undo-fu-session-global-mode)
+  :custom
+  (undo-fu-session-directory (concat user-emacs-directory "undo-fu-session/"))
+  (undo-fu-session-incompatible-files '("\\.gpg$" "/COMMIT_EDITMSG\\'" "/git-rebase-todo\\'"))
+  :config
+  (when (executable-find "zstd")
+    ;; There are other algorithms available, but zstd is the fastest, and speed
+    ;; is our priority within Emacs
+    (setq undo-fu-session-compression 'zst)))
 
 
 ;;; RAINBOW DELIMITERS
@@ -1111,45 +1184,6 @@
   :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
-
-
-;;; DOTENV
-;; A simple major mode to provide .env files with color highlighting
-(use-package dotenv-mode
-  :defer t
-  :straight t
-  :ensure t
-  :config)
-
-
-;;; PULSAR
-;; The `pulsar' package enhances the user experience in Emacs by providing
-;; visual feedback through pulsating highlights. This feature is especially
-;; useful in programming modes, where it can help users easily track
-;; actions such as scrolling, error navigation, yanking, deleting, and
-;; jumping to definitions.
-(use-package pulsar
-  :defer t
-  :straight t
-  :ensure t
-  :hook
-  (after-init . pulsar-global-mode)
-  :config
-  (setq pulsar-pulse t)
-  (setq pulsar-delay 0.025)
-  (setq pulsar-iterations 10)
-  (setq pulsar-face 'evil-ex-lazy-highlight)
-
-  (add-to-list 'pulsar-pulse-functions 'evil-scroll-down)
-  (add-to-list 'pulsar-pulse-functions 'flymake-goto-next-error)
-  (add-to-list 'pulsar-pulse-functions 'flymake-goto-prev-error)
-  (add-to-list 'pulsar-pulse-functions 'evil-yank)
-  (add-to-list 'pulsar-pulse-functions 'evil-yank-line)
-  (add-to-list 'pulsar-pulse-functions 'evil-delete)
-  (add-to-list 'pulsar-pulse-functions 'evil-delete-line)
-  (add-to-list 'pulsar-pulse-functions 'evil-jump-item)
-  (add-to-list 'pulsar-pulse-functions 'diff-hl-next-hunk)
-  (add-to-list 'pulsar-pulse-functions 'diff-hl-previous-hunk))
 
 
 ;;; DOOM MODELINE
@@ -1171,24 +1205,6 @@
     (setq doom-modeline-icon nil))                     ;; Disable icons if nerd fonts are not being used.
   :hook
   (after-init . doom-modeline-mode))
-
-
-;;; NEOTREE
-;; The `neotree' package provides a file tree explorer for Emacs, allowing easy navigation
-;; through directories and files. It presents a visual representation of the file system
-;; and integrates with version control to show file states.
-(use-package neotree
-  :ensure t
-  :straight t
-  :custom
-  (neo-show-hidden-files t)                ;; By default shows hidden files (toggle with H)
-  (neo-theme 'nerd)                        ;; Set the default theme for Neotree to 'nerd' for a visually appealing look.
-  (neo-vc-integration '(face char))        ;; Enable VC integration to display file states with faces (color coding) and characters (icons).
-  :defer t                                 ;; Load the package only when needed to improve startup time.
-  :config
-  (if ek-use-nerd-fonts                    ;; Check if nerd fonts are being used.
-      (setq neo-theme 'nerd-icons)         ;; Set the theme to 'nerd-icons' if nerd fonts are available.
-    (setq neo-theme 'nerd)))               ;; Otherwise, fall back to the 'nerd' theme.
 
 
 ;;; NERD ICONS
@@ -1238,6 +1254,8 @@
 (use-package catppuccin-theme
   :ensure t
   :straight t
+  :init
+  (setq catppuccin-flavor 'latte)
   :config
   (custom-set-faces
    ;; Set the color for changes in the diff highlighting to blue.
@@ -1254,6 +1272,431 @@
   ;; Load the Catppuccin theme without prompting for confirmation.
   (load-theme 'catppuccin :no-confirm))
 
+(use-package avy
+  :straight t
+  :general
+  ("M-;" 'avy-goto-char-timer
+   "<leader>gb" 'avy-pop-mark
+   "<leader>gl" 'avy-goto-line
+   "<leader>gg" 'avy-goto-char-timer)
+  (:states 'normal
+		   "ga" 'avy-goto-char-timer
+		   "gl" 'avy-goto-line)
+  :config
+  (defun avy-action-kill-whole-line (pt)
+	(save-excursion
+	  (goto-char pt)
+	  (kill-whole-line))
+	(select-window
+	 (cdr
+	  (ring-ref avy-ring 0)))
+	t)
+  (defun avy-action-copy-whole-line (pt)
+	(save-excursion
+	  (goto-char pt)
+	  (cl-destructuring-bind (start . end)
+		  (bounds-of-thing-at-point 'line)
+		(copy-region-as-kill start end)))
+	(select-window
+	 (cdr
+	  (ring-ref avy-ring 0)))
+	t)
+
+  (defun avy-action-yank-whole-line (pt)
+	(avy-action-copy-whole-line pt)
+	(save-excursion (yank))
+	t)
+
+  (defun avy-action-mark-to-char (pt)
+	(activate-mark)
+	(goto-char pt))
+
+  (defun avy-action-flyspell (pt)
+	(save-excursion
+      (goto-char pt)
+      (when (require 'flyspell nil t)
+		(flyspell-correct-at-point)))
+	(select-window
+	 (cdr (ring-ref avy-ring 0)))
+	t)
+
+  (defun avy-action-teleport-whole-line (pt)
+	(avy-action-kill-whole-line pt)
+	(save-excursion (yank)) t)
+
+  (defun avy-action-embark (pt)
+	(unwind-protect
+		(save-excursion
+          (goto-char pt)
+          (embark-act))
+      (select-window
+       (cdr (ring-ref avy-ring 0))))
+	t)
+
+  (setf (alist-get ?y avy-dispatch-alist) 'avy-action-yank
+        (alist-get ?w avy-dispatch-alist) 'avy-action-copy
+        (alist-get ?W avy-dispatch-alist) 'avy-action-copy-whole-line
+        (alist-get ?t avy-dispatch-alist) 'avy-action-teleport
+        (alist-get ?T avy-dispatch-alist) 'avy-action-teleport-whole-line
+        (alist-get ?Y avy-dispatch-alist) 'avy-action-yank-whole-line
+        (alist-get ?k avy-dispatch-alist) 'avy-action-kill-stay
+        (alist-get ?K avy-dispatch-alist) 'avy-action-kill-whole-line
+        (alist-get ?  avy-dispatch-alist) 'avy-action-mark-to-char
+        (alist-get ?. avy-dispatch-alist) 'avy-action-flyspell
+        (alist-get ?\; avy-dispatch-alist) 'avy-action-embark)
+  (setq avy-keys (delete ?k avy-keys)))
+
+(use-package ace-window
+  :straight t
+  :general
+  ("M-o" 'ace-window)
+  :custom
+  (ace-window-display-mode t)
+  (aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  (aw-dispatch-alist
+   '((?x aw-delete-window "Delete Window")
+	 (?m aw-swap-window "Swap Windows")
+	 (?M aw-move-window "Move Window")
+	 (?c aw-copy-window "Copy Window")
+	 (?B aw-switch-buffer-in-window "Select Buffer")
+	 (?n aw-flip-window)
+	 (?u aw-switch-buffer-other-window "Switch Buffer Other Window")
+	 (?c aw-split-window-fair "Split Fair Window")
+	 (?v aw-split-window-vert "Split Vert Window")
+	 (?b aw-split-window-horz "Split Horz Window")
+	 (?o delete-other-windows "Delete Other Windows")
+	 (?r aw-window-resize "Resize Window")
+	 (?? aw-show-dispatch-help)))
+  :config
+  ;; Resize window using hydras
+  (defhydra hydra-window-resizer (:columns 2)
+	"Window Sizing."
+	("-" shrink-window-horizontally "horizontal shrink")
+	("=" enlarge-window-horizontally "horizontal enlarge")
+	("_" shrink-window "vertical shrink")
+	("+" enlarge-window "vertical enlarge"))
+
+  (defun aw-window-resize (window)
+	"Resize WINDOW using `hydra-window-resizer/body'."
+	(aw-switch-to-window window)
+	(hydra-window-resizer/body))
+  (defun aw-show-dispatch-help ()
+	"Display action shortucts in echo area."
+	(interactive)
+	(message "%s" (mapconcat
+				   (lambda (action)
+					 (cl-destructuring-bind (key fn &optional description) action
+					   (format "%s: %s"
+							   (propertize
+								(char-to-string key)
+								'face 'aw-key-face)
+							   (or description fn))))
+				   aw-dispatch-alist
+				   " "))
+	;; Prevent this from replacing any help display
+	;; in the minibuffer.
+	(let (aw-minibuffer-flag)
+	  (mapc #'delete-overlay aw-overlays-back)
+	  (call-interactively 'ace-window))))
+
+(use-package org
+  :straight (org :type git :host github :repo "emacs-straight/org-mode")
+  :defer t
+  :mode ("\\.org\\'" . org-mode)
+  :commands (org-mode org-agenda org-capture)
+  :general
+  ("<leader> a" 'org-agenda
+   "<leader> c" 'org-capture)
+  :general-config
+  (:keymaps 'org-mode-map
+			"C-M-<up>" 'org-up-element
+			"C-z" 'org-cycle-list-bullet)
+  (general-nivmap ;; Org open controls
+	"<leader>oj" 'org-clock-goto
+	"<leader>ol" 'org-clock-in-last
+	"<leader>oi" 'org-clock-in
+	"<leader>oo" 'org-clock-out
+	"<leader>oa" 'org-agenda
+	"<leader>oc" 'org-capture)
+  (general-nivmap :keymaps 'org-mode-map ;; Reproduce doom's org menu
+	"C-c l '" #'org-edit-special
+	"C-c l *" #'org-ctrl-c-star
+	"C-c l +" #'org-ctrl-c-minus
+	"C-c l ," #'org-switchb
+	"C-c l ." #'org-goto
+	"C-c l #" #'org-update-statistics-cookies
+	"C-c l @" #'org-cite-insert
+	"C-c l A" #'org-archive-subtree-default
+	"C-c l e" #'org-export-dispatch
+	"C-c l f" #'org-footnote-action
+	"C-c l h" #'org-toggle-heading
+	"C-c l i" #'org-toggle-item
+	"C-c l I" #'org-id-get-create
+	"C-c l k" #'org-babel-remove-result
+	"C-c l n" #'org-store-link
+	"C-c l q" #'org-set-tags-command
+	"C-c l t" #'org-todo
+	"C-c l T" #'org-todo-list
+	"C-c l x" #'org-toggle-checkbox
+	"C-c l a a" #'org-attach
+	"C-c l a d" #'org-attach-delete-one
+	"C-c l a D" #'org-attach-delete-all
+	"C-c l a n" #'org-attach-new
+	"C-c l a o" #'org-attach-open
+	"C-c l a O" #'org-attach-open-in-emacs
+	"C-c l a r" #'org-attach-reveal
+	"C-c l a R" #'org-attach-reveal-in-emacs
+	"C-c l a u" #'org-attach-url
+	"C-c l a s" #'org-attach-set-directory
+	"C-c l a S" #'org-attach-sync
+	"C-c l b -" #'org-table-insert-hline
+	"C-c l b a" #'org-table-align
+	"C-c l b b" #'org-table-blank-field
+	"C-c l b c" #'org-table-create-or-convert-from-region
+	"C-c l b e" #'org-table-edit-field
+	"C-c l b f" #'org-table-edit-formulas
+	"C-c l b h" #'org-table-field-info
+	"C-c l b s" #'org-table-sort-lines
+	"C-c l b r" #'org-table-recalculate
+	"C-c l b R" #'org-table-recalculate-buffer-tables
+	"C-c l b d c" #'org-table-delete-column
+	"C-c l b d r" #'org-table-kill-row
+	"C-c l b i c" #'org-table-insert-column
+	"C-c l b i h" #'org-table-insert-hline
+	"C-c l b i r" #'org-table-insert-row
+	"C-c l b i H" #'org-table-hline-and-move
+	"C-c l b t f" #'org-table-toggle-formula-debugger
+	"C-c l b t o" #'org-table-toggle-coordinate-overlays
+	"C-c l c c" #'org-clock-cancel
+	"C-c l c d" #'org-clock-mark-default-task
+	"C-c l c e" #'org-clock-modify-effort-estimate
+	"C-c l c E" #'org-set-effort
+	"C-c l c g" #'org-clock-goto
+	"C-c l c G" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
+	"C-c l c i" #'org-clock-in
+	"C-c l c I" #'org-clock-in-last
+	"C-c l c o" #'org-clock-out
+	"C-c l c r" #'org-resolve-clocks
+	"C-c l c R" #'org-clock-report
+	"C-c l c t" #'org-evaluate-time-range
+	"C-c l c =" #'org-clock-timestamps-up
+	"C-c l c -" #'org-clock-timestamps-down
+	"C-c l d d" #'org-deadline
+	"C-c l d s" #'org-schedule
+	"C-c l d t" #'org-time-stamp
+	"C-c l d T" #'org-time-stamp-inactive
+	"C-c l g c" #'org-clock-goto
+	"C-c l g C" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
+	"C-c l g i" #'org-id-goto
+	"C-c l g r" #'org-refile-goto-last-stored
+	"C-c l g x" #'org-capture-goto-last-stored
+	"C-c l l i" #'org-id-store-link
+	"C-c l l l" #'org-insert-link
+	"C-c l l L" #'org-insert-all-links
+	"C-c l l s" #'org-store-link
+	"C-c l l S" #'org-insert-last-stored-link
+	"C-c l l t" #'org-toggle-link-display
+	"C-c l P a" #'org-publish-all
+	"C-c l P f" #'org-publish-current-file
+	"C-c l P p" #'org-publish
+	"C-c l P P" #'org-publish-current-project
+	"C-c l P s" #'org-publish-sitemap
+	"C-c l r" #'org-refile
+	"C-c l R" #'org-refile-reverse
+	"C-c l s a" #'org-toggle-archive-tag
+	"C-c l s b" #'org-tree-to-indirect-buffer
+	"C-c l s c" #'org-clone-subtree-with-time-shift
+	"C-c l s d" #'org-cut-subtree
+	"C-c l s h" #'org-promote-subtree
+	"C-c l s j" #'org-move-subtree-down
+	"C-c l s k" #'org-move-subtree-up
+	"C-c l s l" #'org-demote-subtree
+	"C-c l s n" #'org-narrow-to-subtree
+	"C-c l s r" #'org-refile
+	"C-c l s s" #'org-sparse-tree
+	"C-c l s A" #'org-archive-subtree-default
+	"C-c l s N" #'widen
+	"C-c l s S" #'org-sort
+	"C-c l p d" #'org-priority-down
+	"C-c l p p" #'org-priority
+	"C-c l p u" #'org-priority-up)
+
+  :hook ((org-mode . (lambda () (electric-indent-local-mode -1)))
+         (org-mode  . turn-on-visual-line-mode)
+         (org-agenda-mode . hl-line-mode)
+         (org-agenda-mode . (lambda () (add-hook 'window-configuration-change-hook 'org-agenda-align-tags nil t)))
+         (org-agenda-after-show . org-show-entry))
+
+  :custom
+  (org-beamer-mode t) ;; Export to beamer
+  (org-catch-invisible-edits 'show)
+  (org-complete-tags-always-offer-all-agenda-tags t) ;; Always use all tags from Agenda files in capture
+  (org-edit-timestamp-down-means-later nil)
+  (org-export-coding-system 'utf-8)
+  (org-export-kill-product-buffer-when-displayed t)
+  (org-fast-tag-selection-single-key 'expert)
+  (org-hide-leading-stars nil)
+  (org-html-validation-link nil)
+  (org-imenu-depth 2)
+  (org-indent-mode "noindent")
+  (org-log-done t)
+  (org-startup-indented nil)
+  (org-support-shift-select t)
+  (org-tags-column 80)
+  (org-directory "~/org")
+  (org-default-notes-file "~/org/inbox.org")
+  ;; org-agenda:
+  (org-agenda-files (list
+                     "~/org/todo.org"
+                     "~/org/inbox.org"))
+  (org-agenda-compact-blocks t)
+  (org-agenda-start-on-weekday 1)
+  (org-agenda-span 7)
+  (org-agenda-start-day nil)
+  (org-agenda-include-diary t)
+  (org-agenda-sorting-strategy
+   '((agenda habit-down time-up user-defined-up effort-up category-keep)
+     (todo category-up effort-up)
+     (tags category-up effort-up)
+     (search category-up)))
+  (org-agenda-window-setup 'current-window)
+  (org-agenda-custom-commands
+   `(("N" "Notes" tags "NOTE"
+      ((org-agenda-overriding-header "Notes")
+       (org-tags-match-list-sublevels t)))))
+  (setq-default org-agenda-clockreport-parameter-plist '(:link t :maxlevel 3))
+  ;; org-archive:
+  (org-archive-mark-done nil)
+  (org-archive-location "%s_archive::* Archive")
+  ;; org-capture:
+  (org-capture-templates
+   `(("t" "todo" entry (file+headline "" "Inbox") ; "" => `org-default-notes-file'
+      "* TODO %?\n%t\n%i\n")))
+  ;; org-refile:
+  (org-refile-use-cache nil)
+  (org-refile-targets '((nil :maxlevel . 5) (org-agenda-files :maxlevel . 5)))
+  ;; Targets start with the file name - allows creating level 1 tasks
+  (org-refile-use-outline-path t)
+  (org-outline-path-complete-in-steps nil)
+  ;; Allow refile to create parent tasks with confirmation
+  (org-refile-allow-creating-parent-nodes 'confirm)
+  ;; org-todo:
+  (org-todo-keywords
+   (quote ((sequence "TODO(t)" "|" "DONE(d!/!)")
+           )))
+  (org-todo-repeat-to-state "TODO")
+  (org-todo-keyword-faces
+   (quote (("NEXT" :inherit warning)
+           ("PROJECT" :inherit font-lock-string-face))))
+  (org-use-property-inheritance t) ;; Inherit properties from parents
+  ;; org-cite:
+  (org-cite-export-processors '((t csl)))
+  (org-cite-csl-styles-dir "~/.csl")
+  :config
+
+  ;; Open file links in the same frame:
+  (setf (alist-get 'file org-link-frame-setup) #'find-file)
+
+  ;; Open .docx files using macOS/XDG open:
+  (add-to-list 'org-file-apps `("\\.docx\\'" . ,(if (eq system-type 'darwin) "open %s" "xdg-open %s")))
+
+  ;; org-refile configuration:
+  (advice-add 'org-refile :after (lambda (&rest _) (org-save-all-org-buffers)))
+
+  ;; Exclude DONE state tasks from refile targets
+  (defun sanityinc/verify-refile-target ()
+    "Exclude todo keywords with a done state from refile targets."
+    (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+  (setq org-refile-target-verify-function 'sanityinc/verify-refile-target)
+
+  (defun sanityinc/org-refile-anywhere (&optional goto default-buffer rfloc msg)
+    "A version of `org-refile' which allows refiling to any subtree."
+    (interactive "P")
+    (let ((org-refile-target-verify-function))
+      (org-refile goto default-buffer rfloc msg)))
+
+  (defun sanityinc/org-agenda-refile-anywhere (&optional goto rfloc no-update)
+    "A version of `org-agenda-refile' which allows refiling to any subtree."
+    (interactive "P")
+    (let ((org-refile-target-verify-function))
+      (org-agenda-refile goto rfloc no-update)))
+
+  ;; Custom add-ons:
+  (defun ap/org-summary-todo (n-done n-not-done)
+    "Switch entry to DONE when all subentries are done, to TODO otherwise.
+
+N-DONE is the number of done elements; N-NOT-DONE is the number of
+not done."
+    (let (org-log-done org-log-states)  ; turn off logging
+      (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
+
+  (defun ap/org-checkbox-todo ()
+    "Switch header TODO state to DONE when all checkboxes are ticked.
+
+Switch to TODO otherwise"
+    (let ((todo-state (org-get-todo-state)) beg end)
+      (unless (not todo-state)
+        (save-excursion
+          (org-back-to-heading t)
+          (setq beg (point))
+          (end-of-line)
+          (setq end (point))
+          (goto-char beg)
+          (if (re-search-forward "\\[\\([0-9]*%\\)\\]\\|\\[\\([0-9]*\\)/\\([0-9]*\\)\\]"
+                                 end t)
+              (if (match-end 1)
+                  (if (equal (match-string 1) "100%")
+                      (unless (string-equal todo-state "DONE")
+                        (org-todo 'done))
+                    (unless (string-equal todo-state "TODO")
+                      (org-todo 'todo)))
+                (if (and (> (match-end 2) (match-beginning 2))
+                         (equal (match-string 2) (match-string 3)))
+                    (unless (string-equal todo-state "DONE")
+                      (org-todo 'done))
+                  (unless (string-equal todo-state "TODO")
+                    (org-todo 'todo)))))))))
+
+  (add-hook 'org-after-todo-statistics-hook 'ap/org-summary-todo)
+  (add-hook 'org-checkbox-statistics-hook 'ap/org-checkbox-todo)
+
+  (defun ap/wrap-dotimes (fn)
+    "Wrap FN in a dotimes loop to make it repeatable with universal arguments."
+    (let ((fn fn)) #'(lambda (&optional c)
+                       (interactive "p")
+                       (dotimes (_ c) (funcall fn)))))
+
+  (define-key org-mode-map (kbd "M-<up>") (ap/wrap-dotimes 'org-metaup))
+  (define-key org-mode-map (kbd "M-<down>") (ap/wrap-dotimes 'org-metadown)))
+
+(use-package ox-pandoc
+  :straight t
+  :after org
+  :init
+  (add-to-list 'org-export-backends 'pandoc)
+  (setq org-pandoc-options
+        `((standalone . t)
+          (mathjax . t)
+          (variable . "revealjs-url=https://revealjs.com"))))
+
+(use-package move-dup
+  :straight t
+  :general
+  ([M-S-up] 'move-dup-move-lines-up
+   [M-S-down] 'move-dup-move-lines-down
+   [M-up] 'move-dup-move-lines-up
+   [M-down] 'move-dup-move-lines-down
+   [C-M-up] 'move-dup-duplicate-up
+   [C-M-down] 'move-dup-duplicate-down))
+
+(use-package session
+  :straight t
+  :hook
+  (after-init . session-initialize)
+  :init
+  (setq session-save-file (locate-user-emacs-file ".session"))
+  (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
+  (setq session-save-file-coding-system 'utf-8))
 
 ;;; UTILITARY FUNCTION TO INSTALL EMACS-KICK
 (defun ek/first-install ()
