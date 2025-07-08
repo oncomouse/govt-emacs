@@ -946,7 +946,7 @@ Pass SOURCES to consult-buffer, if provided."
   :straight t
   :ensure t
   :custom
-  (evil-collection-want-find-usages-bindings t)
+  (evil-collection-want-find-usages-bindings nil)
   ;; Hook to initialize `evil-collection' when `evil-mode' is activated.
   :hook
   (evil-mode . evil-collection-init))
