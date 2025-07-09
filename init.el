@@ -787,8 +787,8 @@ Pass SOURCES to consult-buffer, if provided."
   :ensure t
   :straight t
   :hook ((org-mode . evil-visual-state)
-		 (markdown-mode . evil-visual-state)
-		 (visual-line-mode . evil-visual-state))
+	 (markdown-mode . evil-visual-state)
+	 (visual-line-mode . evil-visual-state))
   :init
   (setq
    evil-undo-system 'undo-fu
@@ -800,104 +800,104 @@ Pass SOURCES to consult-buffer, if provided."
    evil-want-C-u-delete t)       ;; Makes C-u delete on insert mode
   :general-config
   (general-nivmap
-	"C-n" 'evil-next-line
-	"C-p" 'evil-previous-line)
+    "C-n" 'evil-next-line
+    "C-p" 'evil-previous-line)
   (general-imap
-	"C-e" 'move-end-of-line
-	"C-a" 'move-beginning-of-line)
+    "C-e" 'move-end-of-line
+    "C-a" 'move-beginning-of-line)
   (general-imap
-	"C-y" 'yank
-	"M-y" 'yank-pop)
+    "C-y" 'yank
+    "M-y" 'yank-pop)
   (general-imap :keymaps 'org-mode-map
-	"C-y" 'org-yank)
+    "C-y" 'org-yank)
   (general-imap
-	"C-t" nil ;; unbind C-t for indentation
-	"C->" 'evil-shift-right-line
-	"C-<" 'evil-shift-left-line
-	"C-d" 'delete-char)
+    "C-t" nil ;; unbind C-t for indentation
+    "C->" 'evil-shift-right-line
+    "C-<" 'evil-shift-left-line
+    "C-d" 'delete-char)
   (general-vmap :keymaps 'emacs-lisp-mode-map
-	"gx" 'eval-region)
+    "gx" 'eval-region)
   (general-nmap :keymaps 'emacs-lisp-mode-map
-	"gx" 'evil-eval-region)
+    "gx" 'evil-eval-region)
   ;; Universal argument support:
   (general-nmap
-	"<leader> u" 'universal-argument)
+    "<leader> u" 'universal-argument)
   (:keymaps 'universal-argument-map
-			"<leader> u" 'universal-argument-more
-			"C-u" 'universal-argument-more)
+	    "<leader> u" 'universal-argument-more
+	    "C-u" 'universal-argument-more)
   (general-nivmap
-	"<leader> s f" 'consult-find
-	"<leader> s g" 'consult-grep
-	"<leader> s G" 'consult-git-grep
-	"<leader> s r" 'consult-ripgrep
-	"<leader> s h" 'consult-info
-	"<leader> /" 'consult-line
-	
-	;; Flymake navigation
-	"<leader> x x" 'consult-flymake;; Gives you something like `trouble.nvim'
+    "<leader> s f" 'consult-find
+    "<leader> s g" 'consult-grep
+    "<leader> s G" 'consult-git-grep
+    "<leader> s r" 'consult-ripgrep
+    "<leader> s h" 'consult-info
+    "<leader> /" 'consult-line
+    
+    ;; Flymake navigation
+    "<leader> x x" 'consult-flymake;; Gives you something like `trouble.nvim'
 
-	;; Dired commands for file management
-	"<leader> x d" 'dired
-	"<leader> x j" 'dired-jump
-	"<leader> x f" 'find-file
+    ;; Dired commands for file management
+    "<leader> x d" 'dired
+    "<leader> x j" 'dired-jump
+    "<leader> x f" 'find-file
 
-	;; NeoTree command for file exploration
-	"<leader> e d" 'dired-jump
+    ;; NeoTree command for file exploration
+    "<leader> e d" 'dired-jump
 
-	;; Magit keybindings for Git integration
-	"<leader> v g" 'magit-status      ;; Open Magit status
-	"<leader> v l" 'magit-log-current ;; Show current log
-	"<leader> v d" 'magit-diff-buffer-file ;; Show diff for the current file
-	"<leader> v D" 'diff-hl-show-hunk ;; Show diff for a hunk
-	"<leader> v b" 'vc-annotate       ;; Annotate buffer with version control info
+    ;; Magit keybindings for Git integration
+    "<leader> v g" 'magit-status      ;; Open Magit status
+    "<leader> v l" 'magit-log-current ;; Show current log
+    "<leader> v d" 'magit-diff-buffer-file ;; Show diff for the current file
+    "<leader> v D" 'diff-hl-show-hunk ;; Show diff for a hunk
+    "<leader> v b" 'vc-annotate       ;; Annotate buffer with version control info
 
-	"<leader> b i" 'consult-buffer ;; Open consult buffer list
-	"<leader> b b" 'ibuffer ;; Open Ibuffer
-	"<leader> b d" 'kill-current-buffer ;; Kill current buffer
-	"<leader> b k" 'kill-current-buffer ;; Kill current buffer
-	"<leader> b x" 'kill-current-buffer ;; Kill current buffer
-	"<leader> b s" 'save-buffer ;; Save buffer
-	"<leader> b l" 'consult-buffer ;; Consult buffer
-	"<leader>SPC" 'consult-buffer ;; Consult buffer
+    "<leader> b i" 'consult-buffer ;; Open consult buffer list
+    "<leader> b b" 'ibuffer ;; Open Ibuffer
+    "<leader> b d" 'kill-current-buffer ;; Kill current buffer
+    "<leader> b k" 'kill-current-buffer ;; Kill current buffer
+    "<leader> b x" 'kill-current-buffer ;; Kill current buffer
+    "<leader> b s" 'save-buffer ;; Save buffer
+    "<leader> b l" 'consult-buffer ;; Consult buffer
+    "<leader>SPC" 'consult-buffer ;; Consult buffer
 
-	;; Project management keybindings
-	"<leader> p b" 'consult-project-buffer ;; Consult project buffer
-	"<leader> p p" 'project-switch-project ;; Switch project
-	"<leader> p f" 'project-find-file ;; Find file in project
-	"<leader> p g" 'project-find-regexp ;; Find regexp in project
-	"<leader> p k" 'project-kill-buffers ;; Kill project buffers
-	"<leader> p D" 'project-dired ;; Dired for project
+    ;; Project management keybindings
+    "<leader> p b" 'consult-project-buffer ;; Consult project buffer
+    "<leader> p p" 'project-switch-project ;; Switch project
+    "<leader> p f" 'project-find-file ;; Find file in project
+    "<leader> p g" 'project-find-regexp ;; Find regexp in project
+    "<leader> p k" 'project-kill-buffers ;; Kill project buffers
+    "<leader> p D" 'project-dired ;; Dired for project
 
-	;; Yank from kill ring
-	"<leader> P" 'consult-yank-from-kill-ring
+    ;; Yank from kill ring
+    "<leader> P" 'consult-yank-from-kill-ring
 
-	;; Embark actions for contextual commands
-	"<leader> ." 'embark-act
+    ;; Embark actions for contextual commands
+    "<leader> ." 'embark-act
 
-	;; Help keybindings
-	"<leader> h m" 'describe-mode ;; Describe current mode
-	"<leader> h f" 'describe-function ;; Describe function
-	"<leader> h v" 'describe-variable ;; Describe variable
-	"<leader> h k" 'describe-key ;; Describe key
+    ;; Help keybindings
+    "<leader> h m" 'describe-mode ;; Describe current mode
+    "<leader> h f" 'describe-function ;; Describe function
+    "<leader> h v" 'describe-variable ;; Describe variable
+    "<leader> h k" 'describe-key ;; Describe key
 
-	;; Custom example. Formatting with prettier tool.
-	"<leader> m p"
-	(lambda ()
-	  (interactive)
-	  (shell-command (concat "prettier --write " (shell-quote-argument (buffer-file-name))))
-	  (revert-buffer t t t)))
+    ;; Custom example. Formatting with prettier tool.
+    "<leader> m p"
+    (lambda ()
+      (interactive)
+      (shell-command (concat "prettier --write " (shell-quote-argument (buffer-file-name))))
+      (revert-buffer t t t)))
   (general-nmap
-	;; Tab navigation
-	"] t" 'tab-next ;; Go to next tab
-	"[ t" 'tab-previous ;; Go to previous tab
-	;; Buffer management keybindings
-	"] b" 'switch-to-next-buffer ;; Switch to next buffer
-	"[ b" 'switch-to-prev-buffer ;; Switch to previous buffer
-	"] d" 'flymake-goto-next-error ;; Go to next Flymake error
-	"[ d" 'flymake-goto-prev-error ;; Go to previous Flymake error
-	;; Diff-HL navigation for version control
-	"] c" 'diff-hl-next-hunk ;; Next diff hunk
-	"[ c" 'diff-hl-previous-hunk) ;; Previous diff hunk
+    ;; Tab navigation
+    "] t" 'tab-next ;; Go to next tab
+    "[ t" 'tab-previous ;; Go to previous tab
+    ;; Buffer management keybindings
+    "] b" 'switch-to-next-buffer ;; Switch to next buffer
+    "[ b" 'switch-to-prev-buffer ;; Switch to previous buffer
+    "] d" 'flymake-goto-next-error ;; Go to next Flymake error
+    "[ d" 'flymake-goto-prev-error ;; Go to previous Flymake error
+    ;; Diff-HL navigation for version control
+    "] c" 'diff-hl-next-hunk ;; Next diff hunk
+    "[ c" 'diff-hl-previous-hunk) ;; Previous diff hunk
 
   :config
   ;; Set the leader key to space for easier access to custom commands. (setq evil-want-leader t)
@@ -915,23 +915,23 @@ Pass SOURCES to consult-buffer, if provided."
     (eval-region beg end))
 
   (evil-define-text-object +evil:whole-buffer-txtobj (count &optional _beg _end type)
-	"Text object to select the whole buffer."
-	(evil-range (point-min) (point-max) type))
+    "Text object to select the whole buffer."
+    (evil-range (point-min) (point-max) type))
 
   (general-define-key :keymaps 'evil-inner-text-objects-map
-					  "g" '+evil:whole-buffer-txtobj
-					  :keymaps 'evil-outer-text-objects-map
-					  "g" '+evil:whole-buffer-txtobj)
+		      "g" '+evil:whole-buffer-txtobj
+		      :keymaps 'evil-outer-text-objects-map
+		      "g" '+evil:whole-buffer-txtobj)
 
-	(defvar-keymap 'evil-window-repeat-map
-	  :repeat t
-	  "+" 'evil-window-increase-height
-	  "-" 'evil-window-decrease-height
-	  ">" 'evil-window-increase-width
-	  "<" 'evil-window-decrease-width
-	  "=" 'balance-windows)
-  
-  
+  (defvar-keymap evil-window-repeat-map
+    :repeat t
+    "+" 'evil-window-increase-height
+    "-" 'evil-window-decrease-height
+    ">" 'evil-window-increase-width
+    "<" 'evil-window-decrease-width
+    "=" 'balance-windows)
+
+
   ;; Enable evil mode
   (evil-mode 1))
 
@@ -999,13 +999,13 @@ Pass SOURCES to consult-buffer, if provided."
    "<leader> C--" 'evil-numbers/dec-at-pt)
   :config
   (defvar-keymap evil-numbers-repeat-map
-	:repeat t
-	  "+" 'evil-numbers/inc-at-pt
-	  "=" 'evil-numbers/inc-at-pt
-	  "C-=" 'evil-numbers/inc-at-pt
-	  "C-+" 'evil-numbers/inc-at-pt
-	  "C--" 'evil-numbers/dec-at-pt
-	  "-" 'evil-numbers/dec-at-pt)
+    :repeat t
+    "+" 'evil-numbers/inc-at-pt
+    "=" 'evil-numbers/inc-at-pt
+    "C-=" 'evil-numbers/inc-at-pt
+    "C-+" 'evil-numbers/inc-at-pt
+    "C--" 'evil-numbers/dec-at-pt
+    "-" 'evil-numbers/dec-at-pt))
 
 ;; EVIL MATCHIT
 ;; The `evil-matchit' package extends `evil-mode' by enabling

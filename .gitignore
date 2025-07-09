@@ -57,3 +57,5 @@ p/.extension/
 savehist
 straight/
 var/
+undo-fu-session
+.session
