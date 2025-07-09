@@ -1173,6 +1173,15 @@ Pass SOURCES to consult-buffer, if provided."
     ;; is our priority within Emacs
     (setq undo-fu-session-compression 'zst)))
 
+(use-package better-jumper
+  :straight t
+  :diminish (better-jumper-mode better-jumper-local-mode)
+  :general-config
+  (:states 'motion
+           "C-o" 'better-jumper-jump-backward
+           "C-i" 'better-jumper-jump-forward)
+  :config
+  (better-jumper-mode +1))
 
 ;;; RAINBOW DELIMITERS
 ;; The `rainbow-delimiters' package provides colorful parentheses, brackets, and braces
