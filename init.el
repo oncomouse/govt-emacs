@@ -141,6 +141,8 @@
   :hook                                           ;; Add hooks to enable specific features in certain modes.
   (prog-mode . display-line-numbers-mode)         ;; Enable line numbers in programming modes.
 
+  :general-config
+  ("C-x C-r" 'recentf)
   :config
   ;; By default emacs gives you access to a lot of *special* buffers, while navigating with [b and ]b,
   ;; this might be confusing for newcomers. This settings make sure ]b and [b will always load a
@@ -158,6 +160,10 @@
   (when (eq system-type 'darwin)       ;; Check if the system is macOS.
     (setq mac-command-modifier 'meta)  ;; Set the Command key to act as the Meta key.
     (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 130))
+
+  ;; Use C-h A to describe-face
+  (with-eval-after-load 'help
+    (define-key help-map "A" 'describe-face))
 
   ;; Save manual customizations to a separate file instead of cluttering `init.el'.
   ;; You can M-x customize, M-x customize-group, or M-x customize-themes, etc.
@@ -1182,6 +1188,7 @@ Pass SOURCES to consult-buffer, if provided."
            "C-i" 'better-jumper-jump-forward)
   :config
   (better-jumper-mode +1))
+
 
 ;;; RAINBOW DELIMITERS
 ;; The `rainbow-delimiters' package provides colorful parentheses, brackets, and braces
