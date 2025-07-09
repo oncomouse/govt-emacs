@@ -1679,6 +1679,11 @@ Switch to TODO otherwise"
           (mathjax . t)
           (variable . "revealjs-url=https://revealjs.com"))))
 
+(use-package citeproc
+  :straight t
+  :after (org))
+
+
 (use-package move-dup
   :straight t
   :general
