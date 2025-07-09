@@ -1002,9 +1002,9 @@ Pass SOURCES to consult-buffer, if provided."
     :repeat t
     "+" 'evil-numbers/inc-at-pt
     "=" 'evil-numbers/inc-at-pt
-    "C-=" 'evil-numbers/inc-at-pt
-    "C-+" 'evil-numbers/inc-at-pt
-    "C--" 'evil-numbers/dec-at-pt
+    "C-=" 'evil-numbers/inc-at-pt-incremental
+    "C-+" 'evil-numbers/inc-at-pt-incremental
+    "C--" 'evil-numbers/dec-at-pt-incremental
     "-" 'evil-numbers/dec-at-pt))
 
 ;; EVIL MATCHIT
