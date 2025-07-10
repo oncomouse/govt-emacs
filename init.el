@@ -877,9 +877,6 @@ Pass SOURCES to consult-buffer, if provided."
     ;; Yank from kill ring
     "<leader> P" 'consult-yank-from-kill-ring
 
-    ;; Embark actions for contextual commands
-    "<leader> ." 'embark-act
-
     ;; Help keybindings
     "<leader> h m" 'describe-mode ;; Describe current mode
     "<leader> h f" 'describe-function ;; Describe function
