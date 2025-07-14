@@ -143,6 +143,7 @@
 
   :general-config
   ("C-x C-r" 'recentf)
+  ("C-x C-b" 'ibuffer)
   :config
   ;; By default emacs gives you access to a lot of *special* buffers, while navigating with [b and ]b,
   ;; this might be confusing for newcomers. This settings make sure ]b and [b will always load a
@@ -876,6 +877,7 @@ Pass SOURCES to consult-buffer, if provided."
 
     ;; Yank from kill ring
     "<leader> P" 'consult-yank-from-kill-ring
+
 
     ;; Help keybindings
     "<leader> h m" 'describe-mode ;; Describe current mode
