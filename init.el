@@ -793,7 +793,7 @@ Pass SOURCES to consult-buffer, if provided."
   :ensure t
   :straight t
   :defer t
-  :config
+  :init
   (sanityinc/fullframe-mode 'magit-status-mode))
 
 
