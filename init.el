@@ -483,6 +483,12 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   :hook
   (after-init . which-key-mode)) ;; Enable which-key mode after initialization.
 
+(use-package eshell
+  :ensure nil
+  :defer t
+  :commands 'eshell-command
+  :general
+  ("C-c o t" 'eshell))
 
 ;;; ==================== EXTERNAL PACKAGES ====================
 ;;
@@ -1019,9 +1025,12 @@ Pass SOURCES to consult-buffer, if provided."
 (use-package evil-numbers
   :straight t
   :general
-  ("<leader> C-+" 'evil-numbers/inc-at-pt
-   "<leader> C-=" 'evil-numbers/inc-at-pt
-   "<leader> C--" 'evil-numbers/dec-at-pt)
+  ("<leader> +" 'evil-numbers/inc-at-pt
+   "<leader> =" 'evil-numbers/inc-at-pt
+   "<leader> -" 'evil-numbers/dec-at-pt
+   "<leader> C-+" 'evil-numbers/inc-at-pt-incremental
+   "<leader> C-=" 'evil-numbers/inc-at-pt-incremental
+   "<leader> C--" 'evil-numbers/dec-at-pt-incremental)
   :config
   (defvar-keymap evil-numbers-repeat-map
     :repeat t
@@ -1577,7 +1586,7 @@ Pass SOURCES to consult-buffer, if provided."
   (org-log-done t)
   (org-startup-indented nil)
   (org-support-shift-select t)
-  (org-tags-column 80)
+  (org-tags-column 50)
   (org-directory "~/org")
   (org-default-notes-file "~/org/inbox.org")
   ;; org-agenda:
