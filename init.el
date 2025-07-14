@@ -195,7 +195,13 @@
 
   ;; Set the default coding system for files to UTF-8.
   (modify-coding-system-alist 'file "" 'utf-8)
+  (defmacro sanityinc/fullframe-mode (mode)
+    "Configure buffers that open in MODE to display in full-frame."
+    `(add-to-list 'display-buffer-alist
+                  (cons (cons 'major-mode ,mode)
+                        (list 'sanityinc/display-buffer-full-frame))))
 
+  (sanityinc/fullframe-mode 'ibuffer-mode)
   ;; Add a hook to run code after Emacs has fully initialized.
   (add-hook 'after-init-hook
             (lambda ()
@@ -768,7 +774,9 @@ Pass SOURCES to consult-buffer, if provided."
 (use-package magit
   :ensure t
   :straight t
-  :defer t)
+  :defer t
+  :config
+  (sanityinc/fullframe-mode 'magit-status-mode))
 
 
 ;;; XCLIP
