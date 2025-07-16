@@ -488,7 +488,9 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   :defer t
   :commands 'eshell-command
   :general
-  ("C-c o t" 'eshell))
+  ("C-c o t" 'eshell)
+  :general-config
+  ("C-c C-r" 'eshell-command))
 
 ;;; ==================== EXTERNAL PACKAGES ====================
 ;;
