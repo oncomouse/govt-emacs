@@ -157,10 +157,10 @@
   ;; Configure font settings based on the operating system.
   ;; Ok, this kickstart is meant to be used on the terminal, not on GUI.
   ;; But without this, I fear you could start Graphical Emacs and be sad 
-  (set-face-attribute 'default nil :family "Maple Mono NL NF"  :height 100)
+  (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font"  :height 145)
   (when (eq system-type 'darwin)       ;; Check if the system is macOS.
     (setq mac-command-modifier 'meta)  ;; Set the Command key to act as the Meta key.
-    (set-face-attribute 'default nil :family "Maple Mono NL NF" :height 130))
+    (set-face-attribute 'default nil :family "JetBrainsMono Nerd Font" :height 175))
 
   ;; Use C-h A to describe-face
   (with-eval-after-load 'help
@@ -1739,6 +1739,11 @@ Switch to TODO otherwise"
    [M-down] 'move-dup-move-lines-down
    [C-M-up] 'move-dup-duplicate-up
    [C-M-down] 'move-dup-duplicate-down))
+
+(use-package rg
+  :straight t
+  :config
+  (rg-enable-default-bindings))
 
 (use-package session
   :straight t
