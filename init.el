@@ -1455,117 +1455,117 @@ Pass SOURCES to consult-buffer, if provided."
    "<leader> c" 'org-capture)
   :general-config
   (:keymaps 'org-mode-map
-			"C-M-<up>" 'org-up-element
-			"C-z" 'org-cycle-list-bullet)
+	    "C-M-<up>" 'org-up-element
+	    "C-z" 'org-cycle-list-bullet)
   (general-nivmap ;; Org open controls
-	"<leader>oj" 'org-clock-goto
-	"<leader>ol" 'org-clock-in-last
-	"<leader>oi" 'org-clock-in
-	"<leader>oo" 'org-clock-out
-	"<leader>oa" 'org-agenda
-	"<leader>oc" 'org-capture)
+    "<leader>oj" 'org-clock-goto
+    "<leader>ol" 'org-clock-in-last
+    "<leader>oi" 'org-clock-in
+    "<leader>oo" 'org-clock-out
+    "<leader>oa" 'org-agenda
+    "<leader>oc" 'org-capture)
   (general-nivmap :keymaps 'org-mode-map ;; Reproduce doom's org menu
-	"C-c l '" #'org-edit-special
-	"C-c l *" #'org-ctrl-c-star
-	"C-c l +" #'org-ctrl-c-minus
-	"C-c l ," #'org-switchb
-	"C-c l ." #'org-goto
-	"C-c l #" #'org-update-statistics-cookies
-	"C-c l @" #'org-cite-insert
-	"C-c l A" #'org-archive-subtree-default
-	"C-c l e" #'org-export-dispatch
-	"C-c l f" #'org-footnote-action
-	"C-c l h" #'org-toggle-heading
-	"C-c l i" #'org-toggle-item
-	"C-c l I" #'org-id-get-create
-	"C-c l k" #'org-babel-remove-result
-	"C-c l n" #'org-store-link
-	"C-c l q" #'org-set-tags-command
-	"C-c l t" #'org-todo
-	"C-c l T" #'org-todo-list
-	"C-c l x" #'org-toggle-checkbox
-	"C-c l a a" #'org-attach
-	"C-c l a d" #'org-attach-delete-one
-	"C-c l a D" #'org-attach-delete-all
-	"C-c l a n" #'org-attach-new
-	"C-c l a o" #'org-attach-open
-	"C-c l a O" #'org-attach-open-in-emacs
-	"C-c l a r" #'org-attach-reveal
-	"C-c l a R" #'org-attach-reveal-in-emacs
-	"C-c l a u" #'org-attach-url
-	"C-c l a s" #'org-attach-set-directory
-	"C-c l a S" #'org-attach-sync
-	"C-c l b -" #'org-table-insert-hline
-	"C-c l b a" #'org-table-align
-	"C-c l b b" #'org-table-blank-field
-	"C-c l b c" #'org-table-create-or-convert-from-region
-	"C-c l b e" #'org-table-edit-field
-	"C-c l b f" #'org-table-edit-formulas
-	"C-c l b h" #'org-table-field-info
-	"C-c l b s" #'org-table-sort-lines
-	"C-c l b r" #'org-table-recalculate
-	"C-c l b R" #'org-table-recalculate-buffer-tables
-	"C-c l b d c" #'org-table-delete-column
-	"C-c l b d r" #'org-table-kill-row
-	"C-c l b i c" #'org-table-insert-column
-	"C-c l b i h" #'org-table-insert-hline
-	"C-c l b i r" #'org-table-insert-row
-	"C-c l b i H" #'org-table-hline-and-move
-	"C-c l b t f" #'org-table-toggle-formula-debugger
-	"C-c l b t o" #'org-table-toggle-coordinate-overlays
-	"C-c l c c" #'org-clock-cancel
-	"C-c l c d" #'org-clock-mark-default-task
-	"C-c l c e" #'org-clock-modify-effort-estimate
-	"C-c l c E" #'org-set-effort
-	"C-c l c g" #'org-clock-goto
-	"C-c l c G" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
-	"C-c l c i" #'org-clock-in
-	"C-c l c I" #'org-clock-in-last
-	"C-c l c o" #'org-clock-out
-	"C-c l c r" #'org-resolve-clocks
-	"C-c l c R" #'org-clock-report
-	"C-c l c t" #'org-evaluate-time-range
-	"C-c l c =" #'org-clock-timestamps-up
-	"C-c l c -" #'org-clock-timestamps-down
-	"C-c l d d" #'org-deadline
-	"C-c l d s" #'org-schedule
-	"C-c l d t" #'org-time-stamp
-	"C-c l d T" #'org-time-stamp-inactive
-	"C-c l g c" #'org-clock-goto
-	"C-c l g C" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
-	"C-c l g i" #'org-id-goto
-	"C-c l g r" #'org-refile-goto-last-stored
-	"C-c l g x" #'org-capture-goto-last-stored
-	"C-c l l i" #'org-id-store-link
-	"C-c l l l" #'org-insert-link
-	"C-c l l L" #'org-insert-all-links
-	"C-c l l s" #'org-store-link
-	"C-c l l S" #'org-insert-last-stored-link
-	"C-c l l t" #'org-toggle-link-display
-	"C-c l P a" #'org-publish-all
-	"C-c l P f" #'org-publish-current-file
-	"C-c l P p" #'org-publish
-	"C-c l P P" #'org-publish-current-project
-	"C-c l P s" #'org-publish-sitemap
-	"C-c l r" #'org-refile
-	"C-c l R" #'org-refile-reverse
-	"C-c l s a" #'org-toggle-archive-tag
-	"C-c l s b" #'org-tree-to-indirect-buffer
-	"C-c l s c" #'org-clone-subtree-with-time-shift
-	"C-c l s d" #'org-cut-subtree
-	"C-c l s h" #'org-promote-subtree
-	"C-c l s j" #'org-move-subtree-down
-	"C-c l s k" #'org-move-subtree-up
-	"C-c l s l" #'org-demote-subtree
-	"C-c l s n" #'org-narrow-to-subtree
-	"C-c l s r" #'org-refile
-	"C-c l s s" #'org-sparse-tree
-	"C-c l s A" #'org-archive-subtree-default
-	"C-c l s N" #'widen
-	"C-c l s S" #'org-sort
-	"C-c l p d" #'org-priority-down
-	"C-c l p p" #'org-priority
-	"C-c l p u" #'org-priority-up)
+    "C-c l '" #'org-edit-special
+    "C-c l *" #'org-ctrl-c-star
+    "C-c l +" #'org-ctrl-c-minus
+    "C-c l ," #'org-switchb
+    "C-c l ." #'org-goto
+    "C-c l #" #'org-update-statistics-cookies
+    "C-c l @" #'org-cite-insert
+    "C-c l A" #'org-archive-subtree-default
+    "C-c l e" #'org-export-dispatch
+    "C-c l f" #'org-footnote-action
+    "C-c l h" #'org-toggle-heading
+    "C-c l i" #'org-toggle-item
+    "C-c l I" #'org-id-get-create
+    "C-c l k" #'org-babel-remove-result
+    "C-c l n" #'org-store-link
+    "C-c l q" #'org-set-tags-command
+    "C-c l t" #'org-todo
+    "C-c l T" #'org-todo-list
+    "C-c l x" #'org-toggle-checkbox
+    "C-c l a a" #'org-attach
+    "C-c l a d" #'org-attach-delete-one
+    "C-c l a D" #'org-attach-delete-all
+    "C-c l a n" #'org-attach-new
+    "C-c l a o" #'org-attach-open
+    "C-c l a O" #'org-attach-open-in-emacs
+    "C-c l a r" #'org-attach-reveal
+    "C-c l a R" #'org-attach-reveal-in-emacs
+    "C-c l a u" #'org-attach-url
+    "C-c l a s" #'org-attach-set-directory
+    "C-c l a S" #'org-attach-sync
+    "C-c l b -" #'org-table-insert-hline
+    "C-c l b a" #'org-table-align
+    "C-c l b b" #'org-table-blank-field
+    "C-c l b c" #'org-table-create-or-convert-from-region
+    "C-c l b e" #'org-table-edit-field
+    "C-c l b f" #'org-table-edit-formulas
+    "C-c l b h" #'org-table-field-info
+    "C-c l b s" #'org-table-sort-lines
+    "C-c l b r" #'org-table-recalculate
+    "C-c l b R" #'org-table-recalculate-buffer-tables
+    "C-c l b d c" #'org-table-delete-column
+    "C-c l b d r" #'org-table-kill-row
+    "C-c l b i c" #'org-table-insert-column
+    "C-c l b i h" #'org-table-insert-hline
+    "C-c l b i r" #'org-table-insert-row
+    "C-c l b i H" #'org-table-hline-and-move
+    "C-c l b t f" #'org-table-toggle-formula-debugger
+    "C-c l b t o" #'org-table-toggle-coordinate-overlays
+    "C-c l c c" #'org-clock-cancel
+    "C-c l c d" #'org-clock-mark-default-task
+    "C-c l c e" #'org-clock-modify-effort-estimate
+    "C-c l c E" #'org-set-effort
+    "C-c l c g" #'org-clock-goto
+    "C-c l c G" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
+    "C-c l c i" #'org-clock-in
+    "C-c l c I" #'org-clock-in-last
+    "C-c l c o" #'org-clock-out
+    "C-c l c r" #'org-resolve-clocks
+    "C-c l c R" #'org-clock-report
+    "C-c l c t" #'org-evaluate-time-range
+    "C-c l c =" #'org-clock-timestamps-up
+    "C-c l c -" #'org-clock-timestamps-down
+    "C-c l d d" #'org-deadline
+    "C-c l d s" #'org-schedule
+    "C-c l d t" #'org-time-stamp
+    "C-c l d T" #'org-time-stamp-inactive
+    "C-c l g c" #'org-clock-goto
+    "C-c l g C" (lambda (&rest _ (interactive) (org-clock-goto 'select)))
+    "C-c l g i" #'org-id-goto
+    "C-c l g r" #'org-refile-goto-last-stored
+    "C-c l g x" #'org-capture-goto-last-stored
+    "C-c l l i" #'org-id-store-link
+    "C-c l l l" #'org-insert-link
+    "C-c l l L" #'org-insert-all-links
+    "C-c l l s" #'org-store-link
+    "C-c l l S" #'org-insert-last-stored-link
+    "C-c l l t" #'org-toggle-link-display
+    "C-c l P a" #'org-publish-all
+    "C-c l P f" #'org-publish-current-file
+    "C-c l P p" #'org-publish
+    "C-c l P P" #'org-publish-current-project
+    "C-c l P s" #'org-publish-sitemap
+    "C-c l r" #'org-refile
+    "C-c l R" #'org-refile-reverse
+    "C-c l s a" #'org-toggle-archive-tag
+    "C-c l s b" #'org-tree-to-indirect-buffer
+    "C-c l s c" #'org-clone-subtree-with-time-shift
+    "C-c l s d" #'org-cut-subtree
+    "C-c l s h" #'org-promote-subtree
+    "C-c l s j" #'org-move-subtree-down
+    "C-c l s k" #'org-move-subtree-up
+    "C-c l s l" #'org-demote-subtree
+    "C-c l s n" #'org-narrow-to-subtree
+    "C-c l s r" #'org-refile
+    "C-c l s s" #'org-sparse-tree
+    "C-c l s A" #'org-archive-subtree-default
+    "C-c l s N" #'widen
+    "C-c l s S" #'org-sort
+    "C-c l p d" #'org-priority-down
+    "C-c l p p" #'org-priority
+    "C-c l p u" #'org-priority-up)
 
   :hook ((org-mode . (lambda () (electric-indent-local-mode -1)))
          (org-mode  . turn-on-visual-line-mode)
@@ -1729,6 +1729,20 @@ Switch to TODO otherwise"
   :straight t
   :after (org))
 
+(use-package evil-org
+  :straight t
+  :diminish (evil-org-mode)
+  :after org
+  :hook (org-mode . (lambda () evil-org-mode))
+  :general-config
+  (:states 'motion :keymaps 'org-agenda-mode-map
+           "gl" 'avy-goto-line
+           "c" 'org-agenda-capture
+           "b" 'org-agenda-earlier
+           "f" 'org-agenda-later)
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package move-dup
   :straight t
