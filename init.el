@@ -317,37 +317,6 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   :config
   (repeat-mode 1))
 
-(defun ap/define-holiday (month day year &optional name)
-  (list (list month day year) (or name "")))
-
-(defcustom ap/tamu-holidays
-  (list (ap/define-holiday 10 13 2025 "Fall Break")
-        (ap/define-holiday 10 14 2025 "Fall Break")
-        (ap/define-holiday 3 9 2025 "Spring Break")
-        (ap/define-holiday 3 9 2026 "Spring Break")
-        (ap/define-holiday 3 10 2026 "Spring Break")
-        (ap/define-holiday 3 11 2026 "Spring Break")
-        (ap/define-holiday 3 12 2026 "Spring Break"))
-  "List of days Texas A&M has no classes.")
-
-(defun calendar-in-range-p (d1 d2 x)
-  "Is date X between the dates D1 and D2?"
-  (and (calendar-date-compare (list d1) x) (null (calendar-date-compare (list d2) x))))
-
-(defun ap/filter-holidays (holidays)
-  (let ((m1 displayed-month)
-        (m2 displayed-month)
-        (y1 displayed-year)
-        (y2 displayed-year))
-    (calendar-increment-month m1 y1 -1)
-    (calendar-increment-month m2 y2 1)
-    (let ((d1 (list m1 1 y1)) (d2 (list m2 (calendar-last-day-of-month m2 y2) y2)))
-      (cl-remove-if 'null (mapcar (lambda (x)
-                                    (if (calendar-in-range-p d1 d2 x)
-                                        x
-                                      nil)
-                                    )
-                                  holidays)))))
 (use-package holidays
   :ensure nil
   :init
@@ -360,9 +329,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   ;; Attach our custom holiday lists:
   (setq holiday-other-holidays
         '((holiday-float 11 4 3 "Thanksgiving Break")
-          (holiday-float 11 4 5 "Thanksgiving Break")
-          (ap/filter-holidays ap/tamu-holidays)
-          (ap/filter-holidays ap/daycare-closed)))
+          (holiday-float 11 4 5 "Thanksgiving Break")))
   ;; This gets overwritten somehow:
   (setq calendar-holidays (append holiday-general-holidays holiday-local-holidays
                                   holiday-other-holidays holiday-christian-holidays
@@ -617,19 +584,19 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   :general-config
   ("C-;" 'embark-act)
   (:keymaps 'vertico-map
-			"C-c C-o" 'embark-collect
-			"C-c C-e" 'embark-export
-			"C-c C-c" 'embark-act)
+	    "C-c C-o" 'embark-collect
+	    "C-c C-e" 'embark-export
+	    "C-c C-c" 'embark-act)
   (:keymaps 'minibuffer-mode-map
-			"C-c C-o" 'embark-collect
-			"C-c C-e" 'embark-export)
+	    "C-c C-o" 'embark-collect
+	    "C-c C-e" 'embark-export)
   (:keymaps 'embark-general-map
-			"/" 'consult-ripgrep)
+	    "/" 'consult-ripgrep)
   :config
   ;; Use embark for completion help
   (with-eval-after-load 'which-key
-	(setq prefix-help-command #'embark-prefix-help-command)))
-  
+    (setq prefix-help-command #'embark-prefix-help-command)))
+
 
 ;;; EMBARK-CONSULT
 ;; Embark-Consult provides a bridge between Embark and Consult, ensuring
@@ -859,7 +826,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
     "<leader> s r" 'consult-ripgrep
     "<leader> s h" 'consult-info
     "<leader> /" 'consult-line
-    
+
     ;; Flymake navigation
     "<leader> x x" 'consult-flymake;; Gives you something like `trouble.nvim'
 
