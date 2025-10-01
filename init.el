@@ -587,7 +587,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   (consult-narrow-key "<")
   (consult-widen-key ">")
   :general-config
-  ([remap switch-to-buffer]  'ap/project-buffers
+  ([remap switch-to-buffer]  'consult-buffer
    [remap switch-to-buffer-other-window]  'consult-buffer-other-window
    [remap switch-to-buffer-other-frame]  'consult-buffer-other-frame
    [remap goto-line]  'consult-goto-line
@@ -603,15 +603,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
 
   ;; Use Consult for xref locations with a preview feature.
   (setq xref-show-xrefs-function #'consult-xref
-		xref-show-definitions-function #'consult-xref)
-
-  (defun ap/project-buffers (&optional sources)
-	"Display buffers using  `consult-buffer', narrowed to only project files.
-
-Pass SOURCES to consult-buffer, if provided."
-    (interactive)
-    (setq unread-command-events (append unread-command-events (list ?p 32)))
-    (consult-buffer sources)))
+		xref-show-definitions-function #'consult-xref))
 
 
 ;;; EMBARK
