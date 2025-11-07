@@ -1727,6 +1727,22 @@ Switch to TODO otherwise"
   (setq session-name-disable-regexp "\\(?:\\`'/tmp\\|\\.git/[A-Z_]+\\'\\)")
   (setq session-save-file-coding-system 'utf-8))
 
+(use-package jinx
+  :straight t
+  :diminish jinx-mode
+  :hook (after-init . global-jinx-mode)
+  :general-config
+  ("M-$" 'jinx-correct
+   "C-M-$" 'jinx-languages)
+  (general-nmap
+    "z=" 'jinx-correct
+    "]s" 'jinx-next
+    "[s" 'jinx-previous)
+  :config
+  (with-eval-after-load 'vertico-multiform
+    (add-to-list 'vertico-multiform-categories
+                 '(jinx grid (vertico-grid-annotate . 20)))))
+
 ;;; UTILITARY FUNCTION TO INSTALL EMACS-KICK
 (defun ek/first-install ()
   "Install tree-sitter grammars and compile packages on first run..."
