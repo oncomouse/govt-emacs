@@ -113,6 +113,7 @@
 (use-package emacs
   :ensure nil
   :custom                                         ;; Set custom variables to configure Emacs behavior.
+  (confirm-kill-emacs 'yes-or-no-p)               ;; Ask before quitting Emacs
   (column-number-mode t)                          ;; Display the column number in the mode line.
   (auto-save-default nil)                         ;; Disable automatic saving of buffers.
   (create-lockfiles nil)                          ;; Prevent the creation of lock files when editing.
@@ -120,7 +121,7 @@
   (delete-selection-mode 1)                       ;; Enable replacing selected text with typed text.
   (display-line-numbers-type 'relative)           ;; Use relative line numbering in programming modes.
   (global-auto-revert-non-file-buffers t)         ;; Automatically refresh non-file buffers.
-  (history-length 100)                             ;; Set the length of the command history.
+  (history-length 100)                            ;; Set the length of the command history.
   (inhibit-startup-message t)                     ;; Disable the startup message when Emacs launches.
   (initial-scratch-message "")                    ;; Clear the initial message in the *scratch* buffer.
   (ispell-dictionary "en_US")                     ;; Set the default dictionary for spell checking.
