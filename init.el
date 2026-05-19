@@ -582,6 +582,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
 ;; Just `<leader> .' over any text, explore it :)
 (use-package embark
   :straight t
+  :after (embark-consult)
   :general-config
   ("C-;" 'embark-act)
   (:keymaps 'vertico-map
