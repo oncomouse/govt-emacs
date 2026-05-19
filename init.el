@@ -1561,7 +1561,7 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
   (org-agenda-start-day nil)
   (org-agenda-include-diary t)
   (org-agenda-sorting-strategy
-   '((agenda habit-down time-up user-defined-up effort-up category-keep)
+   '((agenda habit-down time-up effort-up category-keep)
      (todo category-up effort-up)
      (tags category-up effort-up)
      (search category-up)))
@@ -1732,6 +1732,8 @@ Switch to TODO otherwise"
   :straight t
   :diminish jinx-mode
   :hook (after-init . global-jinx-mode)
+  :custom
+  (jinx-languages "en_US")
   :general-config
   ("M-$" 'jinx-correct
    "C-M-$" 'jinx-languages)
