@@ -551,7 +551,6 @@ BUFFER and ALIST are as for `display-buffer-full-frame'."
 (use-package consult
   :ensure t
   :straight t
-  :defer t
   :custom
   (consult-narrow-key "<")
   (consult-widen-key ">")
